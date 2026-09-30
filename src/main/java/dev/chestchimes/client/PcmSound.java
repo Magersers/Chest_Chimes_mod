@@ -22,13 +22,13 @@ public final class PcmSound extends AbstractTickableSoundInstance {
     private final byte[] pcm;
     private final long started = System.nanoTime();
     private final long duration;
-    public PcmSound(byte[] pcm, BlockPos pos, boolean preview) {
+    public PcmSound(byte[] pcm, BlockPos pos, boolean preview, int volume) {
         super(net.minecraft.sounds.SoundEvent.createVariableRangeEvent(ID), SoundSource.BLOCKS, RandomSource.create());
         AudioRules.pcm(pcm);
         this.pcm = pcm;
         this.duration = pcm.length * 1_000_000_000L / (AudioRules.RATE * 2);
         this.x = pos.getX() + .5; this.y = pos.getY() + .5; this.z = pos.getZ() + .5;
-        this.volume = .8f;
+        this.volume = .8f * AudioRules.volume(volume) / 100f;
         this.pitch = 1;
         this.relative = preview;
         this.attenuation = preview ? Attenuation.NONE : Attenuation.LINEAR;

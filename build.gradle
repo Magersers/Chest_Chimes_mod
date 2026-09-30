@@ -4,7 +4,7 @@ plugins {
     id 'org.spongepowered.mixin' version '0.7.+'
 }
 group = 'dev.chestchimes'
-version = '1.0.0'
+version = '1.1.0'
 base { archivesName = 'chest-chimes' }
 java.toolchain.languageVersion = JavaLanguageVersion.of(17)
 minecraft {

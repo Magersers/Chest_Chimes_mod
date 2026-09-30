@@ -1,22 +1,24 @@
 package dev.chestchimes.client;
 
-import dev.chestchimes.audio.Assembly;
-import dev.chestchimes.audio.AudioRules;
+import dev.chestchimes.audio.*;
 import dev.chestchimes.network.Wire;
 import dev.chestchimes.network.Wire.Message;
 import java.util.*;
 import net.minecraft.client.Minecraft;
 import net.minecraft.core.BlockPos;
 import net.minecraft.resources.ResourceKey;
+import net.minecraft.sounds.SoundEvents;
+import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.level.Level;
 
 public final class ClientState {
-    private record Incoming(BlockPos pos, Assembly data, long expires) {}
+    private record Incoming(Message header, Assembly data, long expires) {}
+    private record Playing(PcmSound sound, boolean local) {}
     public static Message state;
+    public static Chime sharedSound;
     private static net.minecraft.world.inventory.AbstractContainerMenu stateMenu;
-    public static String status = "";
     private static final Map<UUID, Incoming> INCOMING = new HashMap<>();
-    private static final Map<BlockPos, PcmSound> PLAYING = new HashMap<>();
+    private static final Map<String, Playing> PLAYING = new HashMap<>();
     private static ResourceKey<Level> dimension;
     private static PcmSound preview;
     private static byte[] upload;
@@ -33,93 +35,142 @@ public final class ClientState {
         switch (message.type()) {
             case Wire.STATE -> {
                 if (mc.player == null || mc.player.containerMenu.containerId != message.menu()) return;
+                INCOMING.values().removeIf(in -> in.header.type() == Wire.STATE);
                 state = message;
                 stateMenu = mc.player.containerMenu;
-                if (mc.screen instanceof ChimeScreen screen && screen.menuId() == message.menu())
-                    screen.serverState(message);
+                sharedSound = null;
+                if (message.total() > 0) begin(message);
+                refreshScreen();
             }
             case Wire.REPLY -> {
-                if (saving && uploadMenu == message.menu()) {
-                    saving = false;
-                    upload = null;
-                }
-                status = message.name();
+                boolean ownReply = saving && uploadMenu == message.menu();
+                if (ownReply) { saving = false; upload = null; }
                 if (mc.screen instanceof ChimeScreen screen && screen.menuId() == message.menu())
-                    screen.message(message.name(), message.shared());
+                    screen.reply(message.name(), message.shared(), ownReply);
             }
             case Wire.PLAY_BEGIN -> {
-                PcmSound active = PLAYING.get(message.pos());
-                if (active != null && !active.finished()) return;
-                if (INCOMING.size() >= 32) return;
-                INCOMING.values().removeIf(in -> in.pos.equals(message.pos()));
-                try {
-                    INCOMING.put(message.transfer(), new Incoming(message.pos(), new Assembly(message.total()),
-                            System.nanoTime() + 10_000_000_000L));
-                } catch (IllegalArgumentException ignored) { }
+                if (active(message.key())) return;
+                Chime local = LocalSounds.get(message.key());
+                switch (SoundPriority.choose(local, message.total())) {
+                    case LOCAL -> play(message, local, true);
+                    case SHARED -> begin(message);
+                    case VANILLA -> mc.level.playLocalSound(
+                            message.pos().getX() + .5, message.pos().getY() + .5, message.pos().getZ() + .5,
+                            message.index() == 1 ? SoundEvents.ENDER_CHEST_OPEN : SoundEvents.CHEST_OPEN,
+                            SoundSource.BLOCKS, .5f, .9f + mc.level.random.nextFloat() * .1f, false);
+                }
             }
-            case Wire.PLAY_CHUNK -> {
-                Incoming incoming = INCOMING.get(message.transfer());
-                if (incoming == null || !incoming.pos.equals(message.pos())) return;
-                try {
-                    if (incoming.data.append(message.index(), message.bytes())) {
-                        INCOMING.remove(message.transfer());
-                        PcmSound current = PLAYING.get(incoming.pos);
-                        if (current == null || current.finished()) {
-                            if (current != null) mc.getSoundManager().stop(current);
-                            PcmSound sound = new PcmSound(incoming.data.finish(), incoming.pos, false);
-                            PLAYING.put(incoming.pos, sound);
-                            mc.getSoundManager().play(sound);
-                        }
-                    }
-                } catch (IllegalArgumentException e) { INCOMING.remove(message.transfer()); }
+            case Wire.MIGRATE -> {
+                if (mc.player != null && mc.player.containerMenu.containerId == message.menu()) begin(message);
             }
+            case Wire.STATE_CHUNK, Wire.PLAY_CHUNK, Wire.MIGRATE_CHUNK -> chunk(message);
             case Wire.STOP -> {
-                INCOMING.values().removeIf(in -> in.pos.equals(message.pos()));
-                PcmSound active = PLAYING.remove(message.pos());
-                if (active != null) mc.getSoundManager().stop(active);
+                INCOMING.values().removeIf(in -> in.header.type() == Wire.PLAY_BEGIN && in.header.key().equals(message.key()));
+                Playing active = PLAYING.get(message.key());
+                // Public changes must never interrupt a private override.
+                if (active != null && !active.local) stop(message.key());
             }
             default -> { }
         }
     }
-
+    private static void begin(Message header) {
+        try {
+            AudioRules.volume(header.volume());
+            if (header.key().isBlank() || header.key().length() > 160) return;
+            if (header.type() == Wire.PLAY_BEGIN)
+                INCOMING.values().removeIf(in -> in.header.type() == Wire.PLAY_BEGIN && in.header.key().equals(header.key()));
+            if (INCOMING.size() >= 32) {
+                if (header.type() == Wire.PLAY_BEGIN) return;
+                INCOMING.entrySet().removeIf(entry -> entry.getValue().header.type() == Wire.PLAY_BEGIN);
+            }
+            INCOMING.put(header.transfer(), new Incoming(header, new Assembly(header.total()),
+                    System.nanoTime() + 10_000_000_000L));
+        } catch (IllegalArgumentException ignored) { }
+    }
+    private static void chunk(Message message) {
+        Incoming in = INCOMING.get(message.transfer());
+        if (in == null || !in.header.key().equals(message.key())) return;
+        int expected = switch (in.header.type()) {
+            case Wire.STATE -> Wire.STATE_CHUNK;
+            case Wire.MIGRATE -> Wire.MIGRATE_CHUNK;
+            default -> Wire.PLAY_CHUNK;
+        };
+        if (expected != message.type()) return;
+        try {
+            if (!in.data.append(message.index(), message.bytes())) return;
+            INCOMING.remove(message.transfer());
+            Chime sound = new Chime(in.header.name(), in.data.finish(), in.header.volume());
+            if (in.header.type() == Wire.STATE) {
+                if (state != null && state.transfer().equals(in.header.transfer())) { sharedSound = sound; refreshScreen(); }
+            } else if (in.header.type() == Wire.MIGRATE) {
+                if (LocalSounds.get(in.header.key()) == null) LocalSounds.save(in.header.key(), sound);
+                // This is only an acknowledgement; personal audio is never uploaded.
+                Wire.toServer(new Message(Wire.MIGRATED, in.header.menu(), in.header.transfer(), BlockPos.ZERO,
+                        false, "", 0, 0, new byte[0]));
+                if (Minecraft.getInstance().screen instanceof ChimeScreen screen) screen.localMigrated();
+            } else if (!active(in.header.key())) {
+                Chime local = LocalSounds.get(in.header.key());
+                play(in.header, local == null ? sound : local, local != null);
+            }
+        } catch (java.io.IOException | IllegalArgumentException e) {
+            INCOMING.remove(message.transfer());
+            if (in.header.type() == Wire.MIGRATE && Minecraft.getInstance().screen instanceof ChimeScreen screen)
+                screen.message("chestchimes.error.local", false);
+        }
+    }
+    private static boolean active(String key) {
+        Playing current = PLAYING.get(key);
+        if (current == null) return false;
+        if (!current.sound.finished()) return true;
+        stop(key);
+        return false;
+    }
+    private static void play(Message header, Chime sound, boolean local) {
+        if (active(header.key())) return;
+        PcmSound instance = new PcmSound(sound.pcm(), header.pos(), false, sound.volume());
+        PLAYING.put(header.key(), new Playing(instance, local));
+        if (sound.volume() > 0) Minecraft.getInstance().getSoundManager().play(instance);
+    }
+    private static void stop(String key) {
+        Playing current = PLAYING.remove(key);
+        if (current != null) Minecraft.getInstance().getSoundManager().stop(current.sound);
+    }
+    public static void localChanged(String key) {
+        stop(key);
+        INCOMING.values().removeIf(in -> in.header.type() == Wire.PLAY_BEGIN && in.header.key().equals(key));
+    }
+    private static void refreshScreen() {
+        if (Minecraft.getInstance().screen instanceof ChimeScreen screen && screen.menuId() == state.menu())
+            screen.serverState();
+    }
     public static boolean hasState(net.minecraft.world.inventory.AbstractContainerMenu menu) {
         return state != null && stateMenu == menu && state.menu() == menu.containerId;
     }
-
-    public static void upload(int menu, AudioImporter.Imported selected, int millis, boolean shared) {
+    public static void upload(int menu, AudioImporter.Imported selected, int millis, int volume) {
         byte[] pcm = AudioRules.trim(selected.pcm(), millis);
-        uploadId = UUID.randomUUID();
-        uploadMenu = menu;
-        uploadIndex = 0;
-        upload = pcm;
-        saving = true;
+        AudioRules.volume(volume);
+        uploadId = UUID.randomUUID(); uploadMenu = menu; uploadIndex = 0; upload = pcm; saving = true;
         saveDeadline = System.nanoTime() + 30_000_000_000L;
-        Wire.toServer(new Message(Wire.BEGIN, menu, uploadId, BlockPos.ZERO, shared,
-                selected.name(), pcm.length, selected.sourceBytes(), new byte[0]));
+        Wire.toServer(new Message(Wire.BEGIN, menu, uploadId, BlockPos.ZERO, true,
+                selected.name(), pcm.length, selected.sourceBytes(), new byte[0], "", volume));
     }
-
-    public static void action(int type, int menu, int millis, boolean shared) {
-        upload = null;
-        uploadMenu = menu;
-        saving = true;
+    public static void resetShared(int menu) {
+        upload = null; uploadMenu = menu; saving = true;
         saveDeadline = System.nanoTime() + 30_000_000_000L;
-        Wire.toServer(new Message(type, menu, UUID.randomUUID(), BlockPos.ZERO, shared, "", millis, 0, new byte[0]));
+        Wire.toServer(Message.simple(Wire.RESET, menu));
     }
-
     public static void tick() {
         Minecraft mc = Minecraft.getInstance();
         if (mc.level == null) return;
         checkDimension();
         INCOMING.values().removeIf(in -> System.nanoTime() > in.expires);
         PLAYING.entrySet().removeIf(entry -> {
-            if (!entry.getValue().finished()) return false;
-            mc.getSoundManager().stop(entry.getValue());
-            return true;
+            if (!entry.getValue().sound.finished()) return false;
+            mc.getSoundManager().stop(entry.getValue().sound); return true;
         });
         if (saving && System.nanoTime() > saveDeadline) {
-            upload = null;
-            saving = false;
-            if (mc.screen instanceof ChimeScreen screen) screen.message("chestchimes.error.timeout", false);
+            upload = null; saving = false;
+            if (mc.screen instanceof ChimeScreen screen) screen.reply("chestchimes.error.timeout", false, true);
         }
         if (upload == null) return;
         if (mc.player == null || mc.player.containerMenu.containerId != uploadMenu) {
@@ -127,22 +178,17 @@ public final class ClientState {
         }
         int offset = uploadIndex * AudioRules.CHUNK;
         byte[] chunk = Arrays.copyOfRange(upload, offset, Math.min(upload.length, offset + AudioRules.CHUNK));
-        Wire.toServer(new Message(Wire.CHUNK, uploadMenu, uploadId, BlockPos.ZERO, false, "", 0, uploadIndex++, chunk));
+        Wire.toServer(new Message(Wire.CHUNK, uploadMenu, uploadId, BlockPos.ZERO, true, "", 0, uploadIndex++, chunk));
         if (offset + chunk.length == upload.length) upload = null;
     }
-
     private static void checkDimension() {
         ResourceKey<Level> current = Minecraft.getInstance().level.dimension();
-        if (!current.equals(dimension)) {
-            clear();
-            dimension = current;
-        }
+        if (!current.equals(dimension)) { clear(); dimension = current; }
     }
-
-    public static void preview(byte[] pcm, int millis) {
+    public static void preview(byte[] pcm, int millis, int volume) {
         stopPreview();
-        preview = new PcmSound(AudioRules.trim(pcm, millis), BlockPos.ZERO, true);
-        Minecraft.getInstance().getSoundManager().play(preview);
+        preview = new PcmSound(AudioRules.trim(pcm, millis), BlockPos.ZERO, true, volume);
+        if (volume > 0) Minecraft.getInstance().getSoundManager().play(preview);
     }
     public static void stopPreview() {
         if (preview != null) Minecraft.getInstance().getSoundManager().stop(preview);
@@ -150,8 +196,8 @@ public final class ClientState {
     }
     public static void clear() {
         var sounds = Minecraft.getInstance().getSoundManager();
-        PLAYING.values().forEach(sounds::stop);
-        PLAYING.clear(); INCOMING.clear(); stopPreview();
-        state = null; stateMenu = null; status = ""; upload = null; saving = false; dimension = null;
+        PLAYING.values().forEach(active -> sounds.stop(active.sound));
+        PLAYING.clear(); INCOMING.clear(); stopPreview(); LocalSounds.clearSession();
+        state = null; sharedSound = null; stateMenu = null; upload = null; saving = false; dimension = null;
     }
 }

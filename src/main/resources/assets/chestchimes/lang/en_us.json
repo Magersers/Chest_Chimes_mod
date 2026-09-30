@@ -25,5 +25,20 @@
   "chestchimes.error.closed": "Chest is closed or unavailable",
   "chestchimes.error.file": "Cannot open file",
   "chestchimes.error.wait": "Wait 2 seconds and try again",
-  "chestchimes.error.timeout": "Server did not respond. Save again."
+  "chestchimes.error.timeout": "Server did not respond. Save again.",
+  "chestchimes.tab.shared": "Shared sound",
+  "chestchimes.tab.local": "Only me",
+  "chestchimes.volume": "Volume: %s%%",
+  "chestchimes.inherit": "No personal sound — using shared sound",
+  "chestchimes.hint.local": "Stored on this computer, only for you",
+  "chestchimes.hint.shared": "Shared with players within 16 blocks",
+  "chestchimes.hint.override": "Your personal sound takes priority when opening",
+  "chestchimes.reset.local": "Remove my sound",
+  "chestchimes.reset.shared": "Remove shared sound",
+  "chestchimes.saved.local": "Personal sound saved on this computer",
+  "chestchimes.reset.local_done": "Now using shared or default sound",
+  "chestchimes.loading": "Loading shared sound…",
+  "chestchimes.shared_changed": "Shared sound changed; edits are still unsaved.",
+  "chestchimes.error.local": "Cannot read or save personal sound",
+  "chestchimes.error.volume": "Volume must be between 0 and 100%"
 }

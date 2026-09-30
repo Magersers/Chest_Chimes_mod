@@ -25,5 +25,20 @@
   "chestchimes.error.closed": "Сундук закрыт или недоступен",
   "chestchimes.error.file": "Не удалось открыть файл",
   "chestchimes.error.wait": "Подождите 2 секунды и повторите",
-  "chestchimes.error.timeout": "Нет ответа сервера. Повторите сохранение."
+  "chestchimes.error.timeout": "Нет ответа сервера. Повторите сохранение.",
+  "chestchimes.tab.shared": "Общий звук",
+  "chestchimes.tab.local": "Только я",
+  "chestchimes.volume": "Громкость: %s%%",
+  "chestchimes.inherit": "Личного звука нет — слышен общий",
+  "chestchimes.hint.local": "Хранится на этом компьютере, только для вас",
+  "chestchimes.hint.shared": "Общий звук слышат игроки в радиусе 16 блоков",
+  "chestchimes.hint.override": "При открытии вы услышите свой личный звук",
+  "chestchimes.reset.local": "Удалить мой звук",
+  "chestchimes.reset.shared": "Удалить общий звук",
+  "chestchimes.saved.local": "Личный звук сохранён на компьютере",
+  "chestchimes.reset.local_done": "Теперь слышен общий или стандартный звук",
+  "chestchimes.loading": "Загрузка общего звука…",
+  "chestchimes.shared_changed": "Общий звук изменён; ваши правки не отправлены.",
+  "chestchimes.error.local": "Не удалось прочитать или сохранить личный звук",
+  "chestchimes.error.volume": "Громкость должна быть от 0 до 100%"
 }

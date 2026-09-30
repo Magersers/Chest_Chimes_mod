@@ -12,6 +12,11 @@ public final class AudioRules {
         if (bytes <= 0 || bytes > MAX_FILE) throw new IllegalArgumentException("chestchimes.error.size");
     }
 
+    public static int volume(int percent) {
+        if (percent < 0 || percent > 100) throw new IllegalArgumentException("chestchimes.error.volume");
+        return percent;
+    }
+
     public static void pcm(byte[] bytes) {
         if (bytes.length < 2 || bytes.length > MAX_PCM || (bytes.length & 1) != 0)
             throw new IllegalArgumentException("chestchimes.error.audio");

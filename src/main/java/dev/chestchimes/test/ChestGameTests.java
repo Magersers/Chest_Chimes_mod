@@ -21,7 +21,7 @@ public final class ChestGameTests {
         tag.putByteArray("pcm", new byte[4410]);
         tag.putString("name", "test.wav");
         tag.putBoolean("shared", true);
-        tag.putUUID("owner", new java.util.UUID(1, 2));
+        tag.putInt("volume", 45);
         return tag;
     }
 
@@ -76,8 +76,8 @@ public final class ChestGameTests {
                 dev.chestchimes.network.Wire.CHUNK, menu, transfer, BlockPos.ZERO, false, "", 0, 0, new byte[4410]));
         helper.assertTrue(ChestService.settings(chest).getByteArray("pcm").length == 4410,
                 "Valid upload into open chest failed");
-        helper.assertTrue(ChestService.settings(chest).getUUID("owner").equals(player.getUUID()),
-                "Private audience owner must be the authenticated sender");
+        helper.assertTrue(!ChestService.settings(chest).hasUUID("owner") && ChestService.settings(chest).getBoolean("shared"),
+                "Server must store only shared recordings, without a private owner");
         dev.chestchimes.server.ChestService.receive(player,
                 dev.chestchimes.network.Wire.Message.simple(dev.chestchimes.network.Wire.RESET, menu + 1));
         helper.assertTrue(!ChestService.settings(chest).isEmpty(), "Forged menu ID reset a chest");
@@ -89,7 +89,7 @@ public final class ChestGameTests {
     }
 
     @GameTest(template = "empty")
-    public static void replacesOpeningSoundOnlyUntilReset(GameTestHelper helper) {
+    public static void routesOpeningsForClientPriorityAndKeepsClosingSound(GameTestHelper helper) {
         BlockPos pos = new BlockPos(1, 1, 1);
         helper.setBlock(pos, Blocks.CHEST);
         BlockEntity chest = helper.getBlockEntity(pos);
@@ -112,7 +112,121 @@ public final class ChestGameTests {
                 net.minecraft.core.registries.BuiltInRegistries.SOUND_EVENT.wrapAsHolder(net.minecraft.sounds.SoundEvents.CHEST_OPEN),
                 net.minecraft.sounds.SoundSource.BLOCKS, .5f, 1);
         net.minecraftforge.common.MinecraftForge.EVENT_BUS.post(restored);
-        helper.assertTrue(!restored.isCanceled(), "Default opening sound was not restored");
+        helper.assertTrue(restored.isCanceled() && ChestService.settings(chest).isEmpty(),
+                "Unconfigured openings must reach client priority selection before falling back to vanilla");
+        helper.succeed();
+    }
+
+
+    private static final class ObservedPlayer extends net.minecraftforge.common.util.FakePlayer {
+        final java.util.List<dev.chestchimes.network.Wire.Message> received = new java.util.ArrayList<>();
+        ObservedPlayer(net.minecraft.server.level.ServerLevel level, String name) {
+            super(level, new com.mojang.authlib.GameProfile(java.util.UUID.randomUUID(), name));
+            connection = new net.minecraft.server.network.ServerGamePacketListenerImpl(level.getServer(),
+                    new net.minecraft.network.Connection(net.minecraft.network.protocol.PacketFlow.SERVERBOUND), this) {
+                @Override public void send(net.minecraft.network.protocol.Packet<?> packet) {
+                    if (packet instanceof net.minecraft.network.protocol.game.ClientboundCustomPayloadPacket payload
+                            && payload.getIdentifier().equals(new net.minecraft.resources.ResourceLocation("chestchimes", "audio"))) {
+                        var bytes = new net.minecraft.network.FriendlyByteBuf(payload.getData().copy());
+                        try {
+                            bytes.readVarInt();
+                            received.add(dev.chestchimes.network.Wire.Message.decode(bytes));
+                        } finally { bytes.release(); }
+                    }
+                }
+            };
+        }
+        void open(ChestBlockEntity chest) {
+            BlockPos pos = chest.getBlockPos();
+            setPos(pos.getX() + .5, pos.getY(), pos.getZ() + 1.5);
+            openMenu(chest);
+        }
+    }
+
+    @GameTest(template = "empty")
+    public static void anotherPlayerReceivesAndEditsSharedSound(GameTestHelper helper) {
+        helper.setBlock(new BlockPos(1, 1, 1), Blocks.CHEST);
+        ChestBlockEntity chest = (ChestBlockEntity) helper.getBlockEntity(new BlockPos(1, 1, 1));
+        ChestService.write(chest, sound());
+        ObservedPlayer other = new ObservedPlayer(helper.getLevel(), "OtherEditor");
+        other.open(chest);
+        helper.assertTrue(other.received.stream().anyMatch(m -> m.type() == dev.chestchimes.network.Wire.STATE
+                        && m.name().equals("test.wav") && m.volume() == 45 && m.total() == 4410),
+                "A different player must receive the shared filename, volume and duration");
+        helper.assertTrue(other.received.stream().anyMatch(m -> m.type() == dev.chestchimes.network.Wire.STATE_CHUNK
+                        && m.bytes().length == 4410), "Shared audio must be available for preview and editing");
+        ChestService.receive(other, new dev.chestchimes.network.Wire.Message(dev.chestchimes.network.Wire.ADJUST,
+                other.containerMenu.containerId, java.util.UUID.randomUUID(), BlockPos.ZERO,
+                true, "", 100, 0, new byte[0], "", 0));
+        helper.assertTrue(ChestService.settings(chest).getInt("volume") == 0,
+                "A different player must be allowed to set shared volume to zero");
+        helper.assertTrue(ChestService.settings(chest).getByteArray("pcm").length == 4410,
+                "Zero volume must preserve the configured sound instead of falling back");
+        other.closeContainer();
+        helper.succeed();
+    }
+
+    @GameTest(template = "empty")
+    public static void privateUploadsAndInvalidVolumeAreRejected(GameTestHelper helper) {
+        helper.setBlock(new BlockPos(1, 1, 1), Blocks.CHEST);
+        ChestBlockEntity chest = (ChestBlockEntity) helper.getBlockEntity(new BlockPos(1, 1, 1));
+        ObservedPlayer player = new ObservedPlayer(helper.getLevel(), "InvalidUpload");
+        player.open(chest);
+        for (int volume : new int[] {-1, 101}) {
+            ChestService.receive(player, new dev.chestchimes.network.Wire.Message(dev.chestchimes.network.Wire.BEGIN,
+                    player.containerMenu.containerId, java.util.UUID.randomUUID(), BlockPos.ZERO,
+                    true, "test.wav", 4410, 4454, new byte[0], "", volume));
+        }
+        ChestService.receive(player, new dev.chestchimes.network.Wire.Message(dev.chestchimes.network.Wire.BEGIN,
+                player.containerMenu.containerId, java.util.UUID.randomUUID(), BlockPos.ZERO,
+                false, "private.wav", 4410, 4454, new byte[0], "", 50));
+        helper.assertTrue(ChestService.settings(chest).isEmpty(), "Invalid/private uploads must not enter world data");
+        helper.assertTrue(player.received.stream().filter(m -> m.type() == dev.chestchimes.network.Wire.REPLY
+                && !m.shared()).count() == 3, "Server must reject all three invalid uploads");
+        player.closeContainer();
+        helper.succeed();
+    }
+
+    @GameTest(template = "empty")
+    public static void legacyPrivateAudioOnlyMigratesToItsOwner(GameTestHelper helper) {
+        helper.setBlock(new BlockPos(1, 1, 1), Blocks.CHEST);
+        ChestBlockEntity chest = (ChestBlockEntity) helper.getBlockEntity(new BlockPos(1, 1, 1));
+        ObservedPlayer owner = new ObservedPlayer(helper.getLevel(), "PrivateOwner");
+        ObservedPlayer other = new ObservedPlayer(helper.getLevel(), "OtherPlayer");
+        CompoundTag legacy = sound();
+        legacy.putBoolean("shared", false); legacy.putUUID("owner", owner.getUUID());
+        ChestService.write(chest, legacy);
+        other.open(chest);
+        helper.assertTrue(other.received.stream().noneMatch(m -> m.type() == dev.chestchimes.network.Wire.MIGRATE
+                || m.type() == dev.chestchimes.network.Wire.STATE_CHUNK),
+                "Legacy private audio must never be sent to another player");
+        other.closeContainer();
+        owner.open(chest);
+        var migration = owner.received.stream().filter(m -> m.type() == dev.chestchimes.network.Wire.MIGRATE).findFirst();
+        helper.assertTrue(migration.isPresent(), "Owner must receive their legacy recording for local storage");
+        helper.assertTrue(chest.getPersistentData().contains("chestchimes_legacy_private"),
+                "Legacy sound must remain recoverable until local persistence is acknowledged");
+        ChestService.receive(owner, new dev.chestchimes.network.Wire.Message(dev.chestchimes.network.Wire.MIGRATED,
+                owner.containerMenu.containerId, migration.orElseThrow().transfer(), BlockPos.ZERO, false, "", 0, 0, new byte[0]));
+        helper.assertTrue(!chest.getPersistentData().contains("chestchimes_legacy_private"),
+                "Acknowledged private recording must be removed from server storage");
+        owner.closeContainer();
+        helper.succeed();
+    }
+
+    @GameTest(template = "empty")
+    public static void chestIdentitySurvivesSettingsChangesButNotReplacement(GameTestHelper helper) {
+        BlockPos pos = new BlockPos(1, 1, 1);
+        helper.setBlock(pos, Blocks.CHEST);
+        BlockEntity chest = helper.getBlockEntity(pos);
+        String id = ChestService.identity(chest);
+        ChestService.write(chest, sound());
+        ChestService.write(chest, new CompoundTag());
+        helper.assertTrue(id.equals(ChestService.identity(chest)), "Editing/resetting shared sound must not orphan local sound");
+        helper.setBlock(pos, Blocks.AIR);
+        helper.setBlock(pos, Blocks.CHEST);
+        helper.assertTrue(!id.equals(ChestService.identity(helper.getBlockEntity(pos))),
+                "A newly placed chest at the same coordinates must not inherit a private sound");
         helper.succeed();
     }
 

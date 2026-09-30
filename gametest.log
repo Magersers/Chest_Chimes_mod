@@ -1,25 +1,25 @@
-[30Sep2026 07:53:01.463] [main/INFO] [cpw.mods.modlauncher.Launcher/MODLAUNCHER]: ModLauncher running: args [--launchTarget, forgegametestserveruserdev, --gameDir, ., --fml.forgeVersion, 47.4.0, --fml.mcVersion, 1.20.1, --fml.forgeGroup, net.minecraftforge, --fml.mcpVersion, 20230612.114412, --mixin.config, chestchimes.mixins.json]
-[30Sep2026 07:53:01.469] [main/INFO] [cpw.mods.modlauncher.Launcher/MODLAUNCHER]: ModLauncher 10.0.9+10.0.9+main.dcd20f30 starting: java version 17.0.20.1 by Eclipse Adoptium; OS Linux arch amd64 version 6.17.0-1022-azure
-[30Sep2026 07:53:01.574] [main/WARN] [net.minecraftforge.fml.loading.FMLConfig/CORE]: Configuration file /home/runner/work/Chest_Chimes_mod/Chest_Chimes_mod/run/config/fml.toml is not correct. Correcting
-[30Sep2026 07:53:01.576] [main/INFO] [net.minecraftforge.fml.loading.FMLConfig/CORE]: Incorrect key [earlyWindowSkipGLVersions] was corrected from null to []
-[30Sep2026 07:53:01.577] [main/INFO] [net.minecraftforge.fml.loading.FMLConfig/CORE]: Incorrect key [earlyWindowLogHelpMessage] was corrected from null to true
-[30Sep2026 07:53:01.578] [main/INFO] [net.minecraftforge.fml.loading.FMLConfig/CORE]: Incorrect key [earlyWindowSquir] was corrected from null to false
-[30Sep2026 07:53:01.579] [main/INFO] [net.minecraftforge.fml.loading.FMLConfig/CORE]: Incorrect key [earlyWindowShowCPU] was corrected from null to false
-[30Sep2026 07:53:01.601] [main/INFO] [net.minecraftforge.fml.loading.ImmediateWindowHandler/]: ImmediateWindowProvider not loading because launch target is forgegametestserveruserdev
-[30Sep2026 07:53:01.657] [main/INFO] [mixin/]: SpongePowered MIXIN Subsystem Version=0.8.5 Source=union:/home/runner/.gradle/caches/modules-2/files-2.1/org.spongepowered/mixin/0.8.5/9d1c0c3a304ae6697ecd477218fa61b850bf57fc/mixin-0.8.5.jar%23116!/ Service=ModLauncher Env=SERVER
-[30Sep2026 07:53:01.999] [main/WARN] [net.minecraftforge.fml.loading.moddiscovery.ModFileParser/LOADING]: Mod file /home/runner/.gradle/caches/modules-2/files-2.1/net.minecraftforge/javafmllanguage/1.20.1-47.4.0/f0c0b352173d0a378cbdcec9cfc4ba65899a721/javafmllanguage-1.20.1-47.4.0.jar is missing mods.toml file
-[30Sep2026 07:53:02.001] [main/WARN] [net.minecraftforge.fml.loading.moddiscovery.ModFileParser/LOADING]: Mod file /home/runner/.gradle/caches/modules-2/files-2.1/net.minecraftforge/lowcodelanguage/1.20.1-47.4.0/e862740d8c84d08dbfedea412bef88fe42e727c5/lowcodelanguage-1.20.1-47.4.0.jar is missing mods.toml file
-[30Sep2026 07:53:02.003] [main/WARN] [net.minecraftforge.fml.loading.moddiscovery.ModFileParser/LOADING]: Mod file /home/runner/.gradle/caches/modules-2/files-2.1/net.minecraftforge/mclanguage/1.20.1-47.4.0/5719b3a297a33f877ed5dde4cb4bd75c859096af/mclanguage-1.20.1-47.4.0.jar is missing mods.toml file
-[30Sep2026 07:53:02.005] [main/WARN] [net.minecraftforge.fml.loading.moddiscovery.ModFileParser/LOADING]: Mod file /home/runner/.gradle/caches/modules-2/files-2.1/net.minecraftforge/fmlcore/1.20.1-47.4.0/235975dafa4309945b59c56b53f31dc5b65a6051/fmlcore-1.20.1-47.4.0.jar is missing mods.toml file
-[30Sep2026 07:53:02.071] [main/INFO] [net.minecraftforge.fml.loading.moddiscovery.JarInJarDependencyLocator/]: No dependencies to load found. Skipping!
-[30Sep2026 07:53:04.267] [main/INFO] [mixin/]: Compatibility level set to JAVA_17
-[30Sep2026 07:53:04.272] [main/INFO] [cpw.mods.modlauncher.LaunchServiceHandler/MODLAUNCHER]: Launching target 'forgegametestserveruserdev' with arguments [--gameDir, .]
-[30Sep2026 07:53:04.327] [main/WARN] [mixin/]: Reference map 'chestchimes.refmap.json' for chestchimes.mixins.json could not be read. If this is a development environment you can ignore this message
-[30Sep2026 07:53:11.145] [modloading-worker-0/INFO] [net.minecraftforge.common.ForgeMod/FORGEMOD]: Forge mod loading, version 47.4.0, for MC 1.20.1 with MCP 20230612.114412
-[30Sep2026 07:53:11.145] [modloading-worker-0/INFO] [net.minecraftforge.common.MinecraftForge/FORGE]: MinecraftForge v47.4.0 Initialized
-[30Sep2026 07:53:11.912] [Forge Version Check/INFO] [net.minecraftforge.fml.VersionChecker/]: [forge] Starting version check at https://files.minecraftforge.net/net/minecraftforge/forge/promotions_slim.json
-[30Sep2026 07:53:13.031] [Forge Version Check/INFO] [net.minecraftforge.fml.VersionChecker/]: [forge] Found status: OUTDATED Current: 47.4.0 Target: 47.4.10
-[30Sep2026 07:53:13.246] [main/ERROR] [net.minecraft.server.dedicated.Settings/]: Failed to load properties from file: server.properties
+[30Sep2026 07:57:54.801] [main/INFO] [cpw.mods.modlauncher.Launcher/MODLAUNCHER]: ModLauncher running: args [--launchTarget, forgegametestserveruserdev, --gameDir, ., --fml.forgeVersion, 47.4.0, --fml.mcVersion, 1.20.1, --fml.forgeGroup, net.minecraftforge, --fml.mcpVersion, 20230612.114412, --mixin.config, chestchimes.mixins.json]
+[30Sep2026 07:57:54.807] [main/INFO] [cpw.mods.modlauncher.Launcher/MODLAUNCHER]: ModLauncher 10.0.9+10.0.9+main.dcd20f30 starting: java version 17.0.20.1 by Eclipse Adoptium; OS Linux arch amd64 version 6.17.0-1022-azure
+[30Sep2026 07:57:54.982] [main/WARN] [net.minecraftforge.fml.loading.FMLConfig/CORE]: Configuration file /home/runner/work/Chest_Chimes_mod/Chest_Chimes_mod/run/config/fml.toml is not correct. Correcting
+[30Sep2026 07:57:54.984] [main/INFO] [net.minecraftforge.fml.loading.FMLConfig/CORE]: Incorrect key [earlyWindowSkipGLVersions] was corrected from null to []
+[30Sep2026 07:57:54.985] [main/INFO] [net.minecraftforge.fml.loading.FMLConfig/CORE]: Incorrect key [earlyWindowLogHelpMessage] was corrected from null to true
+[30Sep2026 07:57:54.985] [main/INFO] [net.minecraftforge.fml.loading.FMLConfig/CORE]: Incorrect key [earlyWindowSquir] was corrected from null to false
+[30Sep2026 07:57:54.986] [main/INFO] [net.minecraftforge.fml.loading.FMLConfig/CORE]: Incorrect key [earlyWindowShowCPU] was corrected from null to false
+[30Sep2026 07:57:55.005] [main/INFO] [net.minecraftforge.fml.loading.ImmediateWindowHandler/]: ImmediateWindowProvider not loading because launch target is forgegametestserveruserdev
+[30Sep2026 07:57:55.081] [main/INFO] [mixin/]: SpongePowered MIXIN Subsystem Version=0.8.5 Source=union:/home/runner/.gradle/caches/modules-2/files-2.1/org.spongepowered/mixin/0.8.5/9d1c0c3a304ae6697ecd477218fa61b850bf57fc/mixin-0.8.5.jar%23116!/ Service=ModLauncher Env=SERVER
+[30Sep2026 07:57:55.586] [main/WARN] [net.minecraftforge.fml.loading.moddiscovery.ModFileParser/LOADING]: Mod file /home/runner/.gradle/caches/modules-2/files-2.1/net.minecraftforge/javafmllanguage/1.20.1-47.4.0/f0c0b352173d0a378cbdcec9cfc4ba65899a721/javafmllanguage-1.20.1-47.4.0.jar is missing mods.toml file
+[30Sep2026 07:57:55.589] [main/WARN] [net.minecraftforge.fml.loading.moddiscovery.ModFileParser/LOADING]: Mod file /home/runner/.gradle/caches/modules-2/files-2.1/net.minecraftforge/lowcodelanguage/1.20.1-47.4.0/e862740d8c84d08dbfedea412bef88fe42e727c5/lowcodelanguage-1.20.1-47.4.0.jar is missing mods.toml file
+[30Sep2026 07:57:55.591] [main/WARN] [net.minecraftforge.fml.loading.moddiscovery.ModFileParser/LOADING]: Mod file /home/runner/.gradle/caches/modules-2/files-2.1/net.minecraftforge/mclanguage/1.20.1-47.4.0/5719b3a297a33f877ed5dde4cb4bd75c859096af/mclanguage-1.20.1-47.4.0.jar is missing mods.toml file
+[30Sep2026 07:57:55.593] [main/WARN] [net.minecraftforge.fml.loading.moddiscovery.ModFileParser/LOADING]: Mod file /home/runner/.gradle/caches/modules-2/files-2.1/net.minecraftforge/fmlcore/1.20.1-47.4.0/235975dafa4309945b59c56b53f31dc5b65a6051/fmlcore-1.20.1-47.4.0.jar is missing mods.toml file
+[30Sep2026 07:57:55.687] [main/INFO] [net.minecraftforge.fml.loading.moddiscovery.JarInJarDependencyLocator/]: No dependencies to load found. Skipping!
+[30Sep2026 07:57:58.205] [main/INFO] [mixin/]: Compatibility level set to JAVA_17
+[30Sep2026 07:57:58.212] [main/INFO] [cpw.mods.modlauncher.LaunchServiceHandler/MODLAUNCHER]: Launching target 'forgegametestserveruserdev' with arguments [--gameDir, .]
+[30Sep2026 07:57:58.288] [main/WARN] [mixin/]: Reference map 'chestchimes.refmap.json' for chestchimes.mixins.json could not be read. If this is a development environment you can ignore this message
+[30Sep2026 07:58:06.826] [modloading-worker-0/INFO] [net.minecraftforge.common.ForgeMod/FORGEMOD]: Forge mod loading, version 47.4.0, for MC 1.20.1 with MCP 20230612.114412
+[30Sep2026 07:58:06.827] [modloading-worker-0/INFO] [net.minecraftforge.common.MinecraftForge/FORGE]: MinecraftForge v47.4.0 Initialized
+[30Sep2026 07:58:07.726] [Forge Version Check/INFO] [net.minecraftforge.fml.VersionChecker/]: [forge] Starting version check at https://files.minecraftforge.net/net/minecraftforge/forge/promotions_slim.json
+[30Sep2026 07:58:08.664] [Forge Version Check/INFO] [net.minecraftforge.fml.VersionChecker/]: [forge] Found status: OUTDATED Current: 47.4.0 Target: 47.4.10
+[30Sep2026 07:58:09.230] [main/ERROR] [net.minecraft.server.dedicated.Settings/]: Failed to load properties from file: server.properties
 java.nio.file.NoSuchFileException: server.properties
 	at sun.nio.fs.UnixException.translateToIOException(UnixException.java:92) ~[?:?]
 	at sun.nio.fs.UnixException.rethrowAsIOException(UnixException.java:106) ~[?:?]
@@ -48,153 +48,187 @@ java.nio.file.NoSuchFileException: server.properties
 	at cpw.mods.modlauncher.BootstrapLaunchConsumer.accept(BootstrapLaunchConsumer.java:26) ~[modlauncher-10.0.9.jar:?]
 	at cpw.mods.modlauncher.BootstrapLaunchConsumer.accept(BootstrapLaunchConsumer.java:23) ~[modlauncher-10.0.9.jar:?]
 	at cpw.mods.bootstraplauncher.BootstrapLauncher.main(BootstrapLauncher.java:141) ~[bootstraplauncher-1.1.2.jar:?]
-[30Sep2026 07:53:13.289] [main/INFO] [com.mojang.authlib.yggdrasil.YggdrasilAuthenticationService/]: Environment: authHost='https://authserver.mojang.com', accountsHost='https://api.mojang.com', sessionHost='https://sessionserver.mojang.com', servicesHost='https://api.minecraftservices.com', name='PROD'
-[30Sep2026 07:53:13.363] [main/WARN] [net.minecraft.server.packs.VanillaPackResourcesBuilder/]: Assets URL 'union:/home/runner/.gradle/caches/forge_gradle/minecraft_user_repo/net/minecraftforge/forge/1.20.1-47.4.0_mapped_official_1.20.1/forge-1.20.1-47.4.0_mapped_official_1.20.1.jar%23181!/assets/.mcassetsroot' uses unexpected schema
-[30Sep2026 07:53:13.368] [main/WARN] [net.minecraft.server.packs.VanillaPackResourcesBuilder/]: Assets URL 'union:/home/runner/.gradle/caches/forge_gradle/minecraft_user_repo/net/minecraftforge/forge/1.20.1-47.4.0_mapped_official_1.20.1/forge-1.20.1-47.4.0_mapped_official_1.20.1.jar%23181!/data/.mcassetsroot' uses unexpected schema
-[30Sep2026 07:53:15.986] [main/INFO] [net.minecraft.world.item.crafting.RecipeManager/]: Loaded 7 recipes
-[30Sep2026 07:53:16.231] [main/INFO] [net.minecraft.advancements.AdvancementList/]: Loaded 1271 advancements
-[30Sep2026 07:53:16.776] [main/INFO] [net.minecraftforge.gametest.ForgeGameTestHooks/]: Enabled Gametest Namespaces: [chestchimes]
-[30Sep2026 07:53:16.828] [Server thread/WARN] [net.minecraftforge.common.ForgeConfigSpec/CORE]: Configuration file ./world/serverconfig/forge-server.toml is not correct. Correcting
-[30Sep2026 07:53:16.830] [Server thread/WARN] [net.minecraftforge.common.ForgeConfigSpec/CORE]: Incorrect key server was corrected from null to its default, SimpleCommentedConfig:{}. 
-[30Sep2026 07:53:16.830] [Server thread/WARN] [net.minecraftforge.common.ForgeConfigSpec/CORE]: Incorrect key server.removeErroringBlockEntities was corrected from null to its default, false. 
-[30Sep2026 07:53:16.830] [Server thread/WARN] [net.minecraftforge.common.ForgeConfigSpec/CORE]: Incorrect key server.removeErroringEntities was corrected from null to its default, false. 
-[30Sep2026 07:53:16.831] [Server thread/WARN] [net.minecraftforge.common.ForgeConfigSpec/CORE]: Incorrect key server.fullBoundingBoxLadders was corrected from null to its default, false. 
-[30Sep2026 07:53:16.831] [Server thread/WARN] [net.minecraftforge.common.ForgeConfigSpec/CORE]: Incorrect key server.zombieBaseSummonChance was corrected from null to its default, 0.1. 
-[30Sep2026 07:53:16.831] [Server thread/WARN] [net.minecraftforge.common.ForgeConfigSpec/CORE]: Incorrect key server.zombieBabyChance was corrected from null to its default, 0.05. 
-[30Sep2026 07:53:16.831] [Server thread/WARN] [net.minecraftforge.common.ForgeConfigSpec/CORE]: Incorrect key server.permissionHandler was corrected from null to its default, forge:default_handler. 
-[30Sep2026 07:53:16.832] [Server thread/WARN] [net.minecraftforge.common.ForgeConfigSpec/CORE]: Incorrect key server.advertiseDedicatedServerToLan was corrected from null to its default, true. 
-[30Sep2026 07:53:16.832] [Server thread/WARN] [net.minecraftforge.common.ForgeConfigSpec/CORE]: Incorrect key server.useItemWithDurationZero was corrected from null to its default, false. 
-[30Sep2026 07:53:26.813] [Server thread/INFO] [net.minecraft.server.MinecraftServer/]: Preparing start region for dimension minecraft:overworld
-[30Sep2026 07:53:27.959] [Worker-Main-1/INFO] [net.minecraft.server.level.progress.LoggerChunkProgressListener/]: Preparing spawn area: 0%
-[30Sep2026 07:53:27.961] [Worker-Main-1/INFO] [net.minecraft.server.level.progress.LoggerChunkProgressListener/]: Preparing spawn area: 0%
-[30Sep2026 07:53:27.961] [Worker-Main-1/INFO] [net.minecraft.server.level.progress.LoggerChunkProgressListener/]: Preparing spawn area: 0%
-[30Sep2026 07:53:28.420] [Worker-Main-1/INFO] [net.minecraft.server.level.progress.LoggerChunkProgressListener/]: Preparing spawn area: 0%
-[30Sep2026 07:53:28.890] [Worker-Main-1/INFO] [net.minecraft.server.level.progress.LoggerChunkProgressListener/]: Preparing spawn area: 0%
-[30Sep2026 07:53:29.362] [Worker-Main-1/INFO] [net.minecraft.server.level.progress.LoggerChunkProgressListener/]: Preparing spawn area: 0%
-[30Sep2026 07:53:29.826] [Worker-Main-1/INFO] [net.minecraft.server.level.progress.LoggerChunkProgressListener/]: Preparing spawn area: 0%
-[30Sep2026 07:53:30.316] [Worker-Main-1/INFO] [net.minecraft.server.level.progress.LoggerChunkProgressListener/]: Preparing spawn area: 0%
-[30Sep2026 07:53:30.829] [Worker-Main-1/INFO] [net.minecraft.server.level.progress.LoggerChunkProgressListener/]: Preparing spawn area: 0%
-[30Sep2026 07:53:31.317] [Worker-Main-1/INFO] [net.minecraft.server.level.progress.LoggerChunkProgressListener/]: Preparing spawn area: 0%
-[30Sep2026 07:53:31.823] [Worker-Main-1/INFO] [net.minecraft.server.level.progress.LoggerChunkProgressListener/]: Preparing spawn area: 0%
-[30Sep2026 07:53:32.343] [Worker-Main-1/INFO] [net.minecraft.server.level.progress.LoggerChunkProgressListener/]: Preparing spawn area: 0%
-[30Sep2026 07:53:32.839] [Worker-Main-1/INFO] [net.minecraft.server.level.progress.LoggerChunkProgressListener/]: Preparing spawn area: 0%
-[30Sep2026 07:53:33.326] [Worker-Main-1/INFO] [net.minecraft.server.level.progress.LoggerChunkProgressListener/]: Preparing spawn area: 0%
-[30Sep2026 07:53:33.824] [Worker-Main-1/INFO] [net.minecraft.server.level.progress.LoggerChunkProgressListener/]: Preparing spawn area: 0%
-[30Sep2026 07:53:34.333] [Worker-Main-1/INFO] [net.minecraft.server.level.progress.LoggerChunkProgressListener/]: Preparing spawn area: 0%
-[30Sep2026 07:53:34.837] [Worker-Main-1/INFO] [net.minecraft.server.level.progress.LoggerChunkProgressListener/]: Preparing spawn area: 0%
-[30Sep2026 07:53:35.327] [Worker-Main-1/INFO] [net.minecraft.server.level.progress.LoggerChunkProgressListener/]: Preparing spawn area: 0%
-[30Sep2026 07:53:35.859] [Worker-Main-1/INFO] [net.minecraft.server.level.progress.LoggerChunkProgressListener/]: Preparing spawn area: 0%
-[30Sep2026 07:53:36.318] [Worker-Main-1/INFO] [net.minecraft.server.level.progress.LoggerChunkProgressListener/]: Preparing spawn area: 0%
-[30Sep2026 07:53:36.836] [Worker-Main-1/INFO] [net.minecraft.server.level.progress.LoggerChunkProgressListener/]: Preparing spawn area: 0%
-[30Sep2026 07:53:37.337] [Worker-Main-1/INFO] [net.minecraft.server.level.progress.LoggerChunkProgressListener/]: Preparing spawn area: 0%
-[30Sep2026 07:53:37.833] [Worker-Main-1/INFO] [net.minecraft.server.level.progress.LoggerChunkProgressListener/]: Preparing spawn area: 0%
-[30Sep2026 07:53:38.383] [Worker-Main-1/INFO] [net.minecraft.server.level.progress.LoggerChunkProgressListener/]: Preparing spawn area: 0%
-[30Sep2026 07:53:38.859] [Worker-Main-1/INFO] [net.minecraft.server.level.progress.LoggerChunkProgressListener/]: Preparing spawn area: 0%
-[30Sep2026 07:53:39.350] [Worker-Main-1/INFO] [net.minecraft.server.level.progress.LoggerChunkProgressListener/]: Preparing spawn area: 0%
-[30Sep2026 07:53:39.819] [Worker-Main-1/INFO] [net.minecraft.server.level.progress.LoggerChunkProgressListener/]: Preparing spawn area: 0%
-[30Sep2026 07:53:40.317] [Worker-Main-1/INFO] [net.minecraft.server.level.progress.LoggerChunkProgressListener/]: Preparing spawn area: 0%
-[30Sep2026 07:53:40.817] [Worker-Main-1/INFO] [net.minecraft.server.level.progress.LoggerChunkProgressListener/]: Preparing spawn area: 0%
-[30Sep2026 07:53:41.385] [Worker-Main-1/INFO] [net.minecraft.server.level.progress.LoggerChunkProgressListener/]: Preparing spawn area: 0%
-[30Sep2026 07:53:41.827] [Worker-Main-1/INFO] [net.minecraft.server.level.progress.LoggerChunkProgressListener/]: Preparing spawn area: 0%
-[30Sep2026 07:53:42.380] [Worker-Main-1/INFO] [net.minecraft.server.level.progress.LoggerChunkProgressListener/]: Preparing spawn area: 0%
-[30Sep2026 07:53:42.872] [Worker-Main-1/INFO] [net.minecraft.server.level.progress.LoggerChunkProgressListener/]: Preparing spawn area: 0%
-[30Sep2026 07:53:43.346] [Worker-Main-1/INFO] [net.minecraft.server.level.progress.LoggerChunkProgressListener/]: Preparing spawn area: 0%
-[30Sep2026 07:53:43.865] [Worker-Main-1/INFO] [net.minecraft.server.level.progress.LoggerChunkProgressListener/]: Preparing spawn area: 0%
-[30Sep2026 07:53:44.316] [Worker-Main-1/INFO] [net.minecraft.server.level.progress.LoggerChunkProgressListener/]: Preparing spawn area: 0%
-[30Sep2026 07:53:44.842] [Worker-Main-1/INFO] [net.minecraft.server.level.progress.LoggerChunkProgressListener/]: Preparing spawn area: 0%
-[30Sep2026 07:53:45.319] [Worker-Main-1/INFO] [net.minecraft.server.level.progress.LoggerChunkProgressListener/]: Preparing spawn area: 0%
-[30Sep2026 07:53:45.820] [Worker-Main-1/INFO] [net.minecraft.server.level.progress.LoggerChunkProgressListener/]: Preparing spawn area: 0%
-[30Sep2026 07:53:46.334] [Worker-Main-1/INFO] [net.minecraft.server.level.progress.LoggerChunkProgressListener/]: Preparing spawn area: 0%
-[30Sep2026 07:53:46.819] [Worker-Main-1/INFO] [net.minecraft.server.level.progress.LoggerChunkProgressListener/]: Preparing spawn area: 0%
-[30Sep2026 07:53:47.318] [Worker-Main-1/INFO] [net.minecraft.server.level.progress.LoggerChunkProgressListener/]: Preparing spawn area: 0%
-[30Sep2026 07:53:47.820] [Worker-Main-1/INFO] [net.minecraft.server.level.progress.LoggerChunkProgressListener/]: Preparing spawn area: 0%
-[30Sep2026 07:53:48.380] [Worker-Main-1/INFO] [net.minecraft.server.level.progress.LoggerChunkProgressListener/]: Preparing spawn area: 0%
-[30Sep2026 07:53:48.841] [Worker-Main-1/INFO] [net.minecraft.server.level.progress.LoggerChunkProgressListener/]: Preparing spawn area: 0%
-[30Sep2026 07:53:49.320] [Worker-Main-1/INFO] [net.minecraft.server.level.progress.LoggerChunkProgressListener/]: Preparing spawn area: 0%
-[30Sep2026 07:53:49.839] [Worker-Main-1/INFO] [net.minecraft.server.level.progress.LoggerChunkProgressListener/]: Preparing spawn area: 0%
-[30Sep2026 07:53:50.325] [Worker-Main-1/INFO] [net.minecraft.server.level.progress.LoggerChunkProgressListener/]: Preparing spawn area: 0%
-[30Sep2026 07:53:50.816] [Worker-Main-1/INFO] [net.minecraft.server.level.progress.LoggerChunkProgressListener/]: Preparing spawn area: 0%
-[30Sep2026 07:53:51.323] [Worker-Main-1/INFO] [net.minecraft.server.level.progress.LoggerChunkProgressListener/]: Preparing spawn area: 0%
-[30Sep2026 07:53:51.854] [Worker-Main-1/INFO] [net.minecraft.server.level.progress.LoggerChunkProgressListener/]: Preparing spawn area: 0%
-[30Sep2026 07:53:52.322] [Worker-Main-1/INFO] [net.minecraft.server.level.progress.LoggerChunkProgressListener/]: Preparing spawn area: 0%
-[30Sep2026 07:53:52.838] [Worker-Main-1/INFO] [net.minecraft.server.level.progress.LoggerChunkProgressListener/]: Preparing spawn area: 0%
-[30Sep2026 07:53:53.318] [Worker-Main-1/INFO] [net.minecraft.server.level.progress.LoggerChunkProgressListener/]: Preparing spawn area: 0%
-[30Sep2026 07:53:53.825] [Worker-Main-1/INFO] [net.minecraft.server.level.progress.LoggerChunkProgressListener/]: Preparing spawn area: 0%
-[30Sep2026 07:53:54.351] [Worker-Main-1/INFO] [net.minecraft.server.level.progress.LoggerChunkProgressListener/]: Preparing spawn area: 0%
-[30Sep2026 07:53:54.844] [Worker-Main-1/INFO] [net.minecraft.server.level.progress.LoggerChunkProgressListener/]: Preparing spawn area: 0%
-[30Sep2026 07:53:55.352] [Worker-Main-1/INFO] [net.minecraft.server.level.progress.LoggerChunkProgressListener/]: Preparing spawn area: 0%
-[30Sep2026 07:53:55.823] [Worker-Main-1/INFO] [net.minecraft.server.level.progress.LoggerChunkProgressListener/]: Preparing spawn area: 0%
-[30Sep2026 07:53:56.343] [Worker-Main-1/INFO] [net.minecraft.server.level.progress.LoggerChunkProgressListener/]: Preparing spawn area: 0%
-[30Sep2026 07:53:56.856] [Worker-Main-1/INFO] [net.minecraft.server.level.progress.LoggerChunkProgressListener/]: Preparing spawn area: 0%
-[30Sep2026 07:53:57.321] [Worker-Main-1/INFO] [net.minecraft.server.level.progress.LoggerChunkProgressListener/]: Preparing spawn area: 0%
-[30Sep2026 07:53:57.836] [Worker-Main-1/INFO] [net.minecraft.server.level.progress.LoggerChunkProgressListener/]: Preparing spawn area: 0%
-[30Sep2026 07:53:58.321] [Worker-Main-1/INFO] [net.minecraft.server.level.progress.LoggerChunkProgressListener/]: Preparing spawn area: 0%
-[30Sep2026 07:53:58.845] [Worker-Main-1/INFO] [net.minecraft.server.level.progress.LoggerChunkProgressListener/]: Preparing spawn area: 0%
-[30Sep2026 07:53:59.329] [Worker-Main-1/INFO] [net.minecraft.server.level.progress.LoggerChunkProgressListener/]: Preparing spawn area: 0%
-[30Sep2026 07:53:59.816] [Worker-Main-1/INFO] [net.minecraft.server.level.progress.LoggerChunkProgressListener/]: Preparing spawn area: 0%
-[30Sep2026 07:54:00.353] [Worker-Main-1/INFO] [net.minecraft.server.level.progress.LoggerChunkProgressListener/]: Preparing spawn area: 0%
-[30Sep2026 07:54:00.832] [Worker-Main-1/INFO] [net.minecraft.server.level.progress.LoggerChunkProgressListener/]: Preparing spawn area: 0%
-[30Sep2026 07:54:01.318] [Worker-Main-1/INFO] [net.minecraft.server.level.progress.LoggerChunkProgressListener/]: Preparing spawn area: 0%
-[30Sep2026 07:54:01.821] [Worker-Main-1/INFO] [net.minecraft.server.level.progress.LoggerChunkProgressListener/]: Preparing spawn area: 0%
-[30Sep2026 07:54:02.328] [Worker-Main-1/INFO] [net.minecraft.server.level.progress.LoggerChunkProgressListener/]: Preparing spawn area: 0%
-[30Sep2026 07:54:02.851] [Worker-Main-1/INFO] [net.minecraft.server.level.progress.LoggerChunkProgressListener/]: Preparing spawn area: 0%
-[30Sep2026 07:54:03.355] [Worker-Main-1/INFO] [net.minecraft.server.level.progress.LoggerChunkProgressListener/]: Preparing spawn area: 0%
-[30Sep2026 07:54:03.853] [Worker-Main-1/INFO] [net.minecraft.server.level.progress.LoggerChunkProgressListener/]: Preparing spawn area: 0%
-[30Sep2026 07:54:04.342] [Worker-Main-1/INFO] [net.minecraft.server.level.progress.LoggerChunkProgressListener/]: Preparing spawn area: 0%
-[30Sep2026 07:54:04.826] [Worker-Main-1/INFO] [net.minecraft.server.level.progress.LoggerChunkProgressListener/]: Preparing spawn area: 0%
-[30Sep2026 07:54:05.345] [Worker-Main-1/INFO] [net.minecraft.server.level.progress.LoggerChunkProgressListener/]: Preparing spawn area: 0%
-[30Sep2026 07:54:05.829] [Worker-Main-1/INFO] [net.minecraft.server.level.progress.LoggerChunkProgressListener/]: Preparing spawn area: 0%
-[30Sep2026 07:54:06.320] [Worker-Main-1/INFO] [net.minecraft.server.level.progress.LoggerChunkProgressListener/]: Preparing spawn area: 0%
-[30Sep2026 07:54:08.785] [Worker-Main-1/INFO] [net.minecraft.server.level.progress.LoggerChunkProgressListener/]: Preparing spawn area: 0%
-[30Sep2026 07:54:08.785] [Worker-Main-1/INFO] [net.minecraft.server.level.progress.LoggerChunkProgressListener/]: Preparing spawn area: 0%
-[30Sep2026 07:54:08.844] [Worker-Main-1/INFO] [net.minecraft.server.level.progress.LoggerChunkProgressListener/]: Preparing spawn area: 0%
-[30Sep2026 07:54:08.845] [Worker-Main-1/INFO] [net.minecraft.server.level.progress.LoggerChunkProgressListener/]: Preparing spawn area: 0%
-[30Sep2026 07:54:08.845] [Worker-Main-1/INFO] [net.minecraft.server.level.progress.LoggerChunkProgressListener/]: Preparing spawn area: 0%
-[30Sep2026 07:54:09.342] [Worker-Main-1/INFO] [net.minecraft.server.level.progress.LoggerChunkProgressListener/]: Preparing spawn area: 0%
-[30Sep2026 07:54:09.848] [Worker-Main-1/INFO] [net.minecraft.server.level.progress.LoggerChunkProgressListener/]: Preparing spawn area: 0%
-[30Sep2026 07:54:10.321] [Worker-Main-1/INFO] [net.minecraft.server.level.progress.LoggerChunkProgressListener/]: Preparing spawn area: 0%
-[30Sep2026 07:54:10.829] [Worker-Main-1/INFO] [net.minecraft.server.level.progress.LoggerChunkProgressListener/]: Preparing spawn area: 0%
-[30Sep2026 07:54:11.346] [Worker-Main-1/INFO] [net.minecraft.server.level.progress.LoggerChunkProgressListener/]: Preparing spawn area: 0%
-[30Sep2026 07:54:11.822] [Worker-Main-1/INFO] [net.minecraft.server.level.progress.LoggerChunkProgressListener/]: Preparing spawn area: 0%
-[30Sep2026 07:54:12.354] [Worker-Main-1/INFO] [net.minecraft.server.level.progress.LoggerChunkProgressListener/]: Preparing spawn area: 0%
-[30Sep2026 07:54:12.829] [Worker-Main-1/INFO] [net.minecraft.server.level.progress.LoggerChunkProgressListener/]: Preparing spawn area: 0%
-[30Sep2026 07:54:13.318] [Worker-Main-1/INFO] [net.minecraft.server.level.progress.LoggerChunkProgressListener/]: Preparing spawn area: 0%
-[30Sep2026 07:54:13.818] [Worker-Main-1/INFO] [net.minecraft.server.level.progress.LoggerChunkProgressListener/]: Preparing spawn area: 0%
-[30Sep2026 07:54:14.324] [Worker-Main-1/INFO] [net.minecraft.server.level.progress.LoggerChunkProgressListener/]: Preparing spawn area: 0%
-[30Sep2026 07:54:14.825] [Worker-Main-1/INFO] [net.minecraft.server.level.progress.LoggerChunkProgressListener/]: Preparing spawn area: 0%
-[30Sep2026 07:54:15.319] [Worker-Main-1/INFO] [net.minecraft.server.level.progress.LoggerChunkProgressListener/]: Preparing spawn area: 0%
-[30Sep2026 07:54:15.836] [Worker-Main-1/INFO] [net.minecraft.server.level.progress.LoggerChunkProgressListener/]: Preparing spawn area: 0%
-[30Sep2026 07:54:16.329] [Worker-Main-1/INFO] [net.minecraft.server.level.progress.LoggerChunkProgressListener/]: Preparing spawn area: 0%
-[30Sep2026 07:54:16.835] [Worker-Main-1/INFO] [net.minecraft.server.level.progress.LoggerChunkProgressListener/]: Preparing spawn area: 0%
-[30Sep2026 07:54:17.319] [Worker-Main-1/INFO] [net.minecraft.server.level.progress.LoggerChunkProgressListener/]: Preparing spawn area: 0%
-[30Sep2026 07:54:17.845] [Worker-Main-1/INFO] [net.minecraft.server.level.progress.LoggerChunkProgressListener/]: Preparing spawn area: 0%
-[30Sep2026 07:54:18.330] [Worker-Main-1/INFO] [net.minecraft.server.level.progress.LoggerChunkProgressListener/]: Preparing spawn area: 0%
-[30Sep2026 07:54:18.817] [Worker-Main-1/INFO] [net.minecraft.server.level.progress.LoggerChunkProgressListener/]: Preparing spawn area: 0%
-[30Sep2026 07:54:19.319] [Worker-Main-1/INFO] [net.minecraft.server.level.progress.LoggerChunkProgressListener/]: Preparing spawn area: 0%
-[30Sep2026 07:54:19.834] [Worker-Main-1/INFO] [net.minecraft.server.level.progress.LoggerChunkProgressListener/]: Preparing spawn area: 0%
-[30Sep2026 07:54:20.337] [Worker-Main-1/INFO] [net.minecraft.server.level.progress.LoggerChunkProgressListener/]: Preparing spawn area: 0%
-[30Sep2026 07:54:21.091] [Worker-Main-1/INFO] [net.minecraft.server.level.progress.LoggerChunkProgressListener/]: Preparing spawn area: 0%
-[30Sep2026 07:54:21.951] [Worker-Main-1/INFO] [net.minecraft.server.level.progress.LoggerChunkProgressListener/]: Preparing spawn area: 6%
-[30Sep2026 07:54:21.952] [Worker-Main-1/INFO] [net.minecraft.server.level.progress.LoggerChunkProgressListener/]: Preparing spawn area: 6%
-[30Sep2026 07:54:22.713] [Worker-Main-1/INFO] [net.minecraft.server.level.progress.LoggerChunkProgressListener/]: Preparing spawn area: 55%
-[30Sep2026 07:54:23.052] [Worker-Main-1/INFO] [net.minecraft.server.level.progress.LoggerChunkProgressListener/]: Preparing spawn area: 85%
-[30Sep2026 07:54:26.085] [Server thread/INFO] [net.minecraft.server.level.progress.LoggerChunkProgressListener/]: Time elapsed: 59269 ms
-[30Sep2026 07:54:26.086] [Server thread/INFO] [net.minecraft.gametest.framework.GameTestServer/]: Started game test server
-[30Sep2026 07:54:26.092] [Server thread/INFO] [net.minecraftforge.server.permission.PermissionAPI/]: Successfully initialized permission handler forge:default_handler
-[30Sep2026 07:54:26.857] [Server thread/INFO] [net.minecraft.gametest.framework.GameTestBatchRunner/]: Running test batch 'defaultBatch:1' (5 tests)...
-[30Sep2026 07:54:26.907] [Server thread/INFO] [net.minecraft.gametest.framework.GameTestServer/]: 5 tests are now running!
-[30Sep2026 07:54:27.312] [Server thread/INFO] [net.minecraft.gametest.framework.GameTestServer/]: [+++++]
-[30Sep2026 07:54:27.313] [Server thread/INFO] [net.minecraft.gametest.framework.GameTestServer/]: ========= 5 GAME TESTS COMPLETE ======================
-[30Sep2026 07:54:27.313] [Server thread/INFO] [net.minecraft.gametest.framework.GameTestServer/]: All 5 required tests passed :)
-[30Sep2026 07:54:27.314] [Server thread/INFO] [net.minecraft.gametest.framework.GameTestServer/]: ====================================================
-[30Sep2026 07:54:27.315] [Server thread/INFO] [net.minecraft.server.MinecraftServer/]: Stopping server
-[30Sep2026 07:54:27.316] [Server thread/INFO] [net.minecraft.server.MinecraftServer/]: Saving players
-[30Sep2026 07:54:27.316] [Server thread/INFO] [net.minecraft.server.MinecraftServer/]: Saving worlds
-[30Sep2026 07:54:47.588] [Server thread/INFO] [net.minecraft.server.MinecraftServer/]: Saving chunks for level 'ServerLevel[world]'/minecraft:overworld
-[30Sep2026 07:54:49.181] [Server thread/INFO] [net.minecraft.server.MinecraftServer/]: Saving chunks for level 'ServerLevel[world]'/minecraft:the_end
-[30Sep2026 07:54:49.183] [Server thread/INFO] [net.minecraft.server.MinecraftServer/]: Saving chunks for level 'ServerLevel[world]'/minecraft:the_nether
-[30Sep2026 07:54:49.204] [Server thread/INFO] [net.minecraft.server.MinecraftServer/]: ThreadedAnvilChunkStorage (world): All chunks are saved
-[30Sep2026 07:54:49.204] [Server thread/INFO] [net.minecraft.server.MinecraftServer/]: ThreadedAnvilChunkStorage (DIM1): All chunks are saved
-[30Sep2026 07:54:49.204] [Server thread/INFO] [net.minecraft.server.MinecraftServer/]: ThreadedAnvilChunkStorage (DIM-1): All chunks are saved
-[30Sep2026 07:54:49.204] [Server thread/INFO] [net.minecraft.server.MinecraftServer/]: ThreadedAnvilChunkStorage: All dimensions are saved
-[30Sep2026 07:54:49.616] [Server thread/INFO] [net.minecraft.gametest.framework.GameTestServer/]: Game test server shutting down
+[30Sep2026 07:58:09.281] [main/INFO] [com.mojang.authlib.yggdrasil.YggdrasilAuthenticationService/]: Environment: authHost='https://authserver.mojang.com', accountsHost='https://api.mojang.com', sessionHost='https://sessionserver.mojang.com', servicesHost='https://api.minecraftservices.com', name='PROD'
+[30Sep2026 07:58:09.352] [main/WARN] [net.minecraft.server.packs.VanillaPackResourcesBuilder/]: Assets URL 'union:/home/runner/.gradle/caches/forge_gradle/minecraft_user_repo/net/minecraftforge/forge/1.20.1-47.4.0_mapped_official_1.20.1/forge-1.20.1-47.4.0_mapped_official_1.20.1.jar%23181!/assets/.mcassetsroot' uses unexpected schema
+[30Sep2026 07:58:09.357] [main/WARN] [net.minecraft.server.packs.VanillaPackResourcesBuilder/]: Assets URL 'union:/home/runner/.gradle/caches/forge_gradle/minecraft_user_repo/net/minecraftforge/forge/1.20.1-47.4.0_mapped_official_1.20.1/forge-1.20.1-47.4.0_mapped_official_1.20.1.jar%23181!/data/.mcassetsroot' uses unexpected schema
+[30Sep2026 07:58:12.468] [main/INFO] [net.minecraft.world.item.crafting.RecipeManager/]: Loaded 7 recipes
+[30Sep2026 07:58:12.671] [main/INFO] [net.minecraft.advancements.AdvancementList/]: Loaded 1271 advancements
+[30Sep2026 07:58:13.354] [main/INFO] [net.minecraftforge.gametest.ForgeGameTestHooks/]: Enabled Gametest Namespaces: [chestchimes]
+[30Sep2026 07:58:13.422] [Server thread/WARN] [net.minecraftforge.common.ForgeConfigSpec/CORE]: Configuration file ./world/serverconfig/forge-server.toml is not correct. Correcting
+[30Sep2026 07:58:13.423] [Server thread/WARN] [net.minecraftforge.common.ForgeConfigSpec/CORE]: Incorrect key server was corrected from null to its default, SimpleCommentedConfig:{}. 
+[30Sep2026 07:58:13.424] [Server thread/WARN] [net.minecraftforge.common.ForgeConfigSpec/CORE]: Incorrect key server.removeErroringBlockEntities was corrected from null to its default, false. 
+[30Sep2026 07:58:13.424] [Server thread/WARN] [net.minecraftforge.common.ForgeConfigSpec/CORE]: Incorrect key server.removeErroringEntities was corrected from null to its default, false. 
+[30Sep2026 07:58:13.425] [Server thread/WARN] [net.minecraftforge.common.ForgeConfigSpec/CORE]: Incorrect key server.fullBoundingBoxLadders was corrected from null to its default, false. 
+[30Sep2026 07:58:13.425] [Server thread/WARN] [net.minecraftforge.common.ForgeConfigSpec/CORE]: Incorrect key server.zombieBaseSummonChance was corrected from null to its default, 0.1. 
+[30Sep2026 07:58:13.426] [Server thread/WARN] [net.minecraftforge.common.ForgeConfigSpec/CORE]: Incorrect key server.zombieBabyChance was corrected from null to its default, 0.05. 
+[30Sep2026 07:58:13.426] [Server thread/WARN] [net.minecraftforge.common.ForgeConfigSpec/CORE]: Incorrect key server.permissionHandler was corrected from null to its default, forge:default_handler. 
+[30Sep2026 07:58:13.426] [Server thread/WARN] [net.minecraftforge.common.ForgeConfigSpec/CORE]: Incorrect key server.advertiseDedicatedServerToLan was corrected from null to its default, true. 
+[30Sep2026 07:58:13.426] [Server thread/WARN] [net.minecraftforge.common.ForgeConfigSpec/CORE]: Incorrect key server.useItemWithDurationZero was corrected from null to its default, false. 
+[30Sep2026 07:58:25.693] [Server thread/INFO] [net.minecraft.server.MinecraftServer/]: Preparing start region for dimension minecraft:overworld
+[30Sep2026 07:58:26.853] [Worker-Main-1/INFO] [net.minecraft.server.level.progress.LoggerChunkProgressListener/]: Preparing spawn area: 0%
+[30Sep2026 07:58:26.854] [Worker-Main-1/INFO] [net.minecraft.server.level.progress.LoggerChunkProgressListener/]: Preparing spawn area: 0%
+[30Sep2026 07:58:26.855] [Worker-Main-1/INFO] [net.minecraft.server.level.progress.LoggerChunkProgressListener/]: Preparing spawn area: 0%
+[30Sep2026 07:58:27.215] [Worker-Main-1/INFO] [net.minecraft.server.level.progress.LoggerChunkProgressListener/]: Preparing spawn area: 0%
+[30Sep2026 07:58:27.994] [Worker-Main-1/INFO] [net.minecraft.server.level.progress.LoggerChunkProgressListener/]: Preparing spawn area: 0%
+[30Sep2026 07:58:28.355] [Worker-Main-1/INFO] [net.minecraft.server.level.progress.LoggerChunkProgressListener/]: Preparing spawn area: 0%
+[30Sep2026 07:58:28.790] [Worker-Main-1/INFO] [net.minecraft.server.level.progress.LoggerChunkProgressListener/]: Preparing spawn area: 0%
+[30Sep2026 07:58:29.256] [Worker-Main-1/INFO] [net.minecraft.server.level.progress.LoggerChunkProgressListener/]: Preparing spawn area: 0%
+[30Sep2026 07:58:29.696] [Worker-Main-1/INFO] [net.minecraft.server.level.progress.LoggerChunkProgressListener/]: Preparing spawn area: 0%
+[30Sep2026 07:58:30.281] [Worker-Main-1/INFO] [net.minecraft.server.level.progress.LoggerChunkProgressListener/]: Preparing spawn area: 0%
+[30Sep2026 07:58:30.733] [Worker-Main-1/INFO] [net.minecraft.server.level.progress.LoggerChunkProgressListener/]: Preparing spawn area: 0%
+[30Sep2026 07:58:31.238] [Worker-Main-1/INFO] [net.minecraft.server.level.progress.LoggerChunkProgressListener/]: Preparing spawn area: 0%
+[30Sep2026 07:58:31.796] [Worker-Main-1/INFO] [net.minecraft.server.level.progress.LoggerChunkProgressListener/]: Preparing spawn area: 0%
+[30Sep2026 07:58:32.200] [Worker-Main-1/INFO] [net.minecraft.server.level.progress.LoggerChunkProgressListener/]: Preparing spawn area: 0%
+[30Sep2026 07:58:32.704] [Worker-Main-1/INFO] [net.minecraft.server.level.progress.LoggerChunkProgressListener/]: Preparing spawn area: 0%
+[30Sep2026 07:58:33.249] [Worker-Main-1/INFO] [net.minecraft.server.level.progress.LoggerChunkProgressListener/]: Preparing spawn area: 0%
+[30Sep2026 07:58:33.714] [Worker-Main-1/INFO] [net.minecraft.server.level.progress.LoggerChunkProgressListener/]: Preparing spawn area: 0%
+[30Sep2026 07:58:34.271] [Worker-Main-1/INFO] [net.minecraft.server.level.progress.LoggerChunkProgressListener/]: Preparing spawn area: 0%
+[30Sep2026 07:58:34.698] [Worker-Main-1/INFO] [net.minecraft.server.level.progress.LoggerChunkProgressListener/]: Preparing spawn area: 0%
+[30Sep2026 07:58:35.212] [Worker-Main-1/INFO] [net.minecraft.server.level.progress.LoggerChunkProgressListener/]: Preparing spawn area: 0%
+[30Sep2026 07:58:35.695] [Worker-Main-1/INFO] [net.minecraft.server.level.progress.LoggerChunkProgressListener/]: Preparing spawn area: 0%
+[30Sep2026 07:58:36.200] [Worker-Main-1/INFO] [net.minecraft.server.level.progress.LoggerChunkProgressListener/]: Preparing spawn area: 0%
+[30Sep2026 07:58:36.742] [Worker-Main-1/INFO] [net.minecraft.server.level.progress.LoggerChunkProgressListener/]: Preparing spawn area: 0%
+[30Sep2026 07:58:37.220] [Worker-Main-1/INFO] [net.minecraft.server.level.progress.LoggerChunkProgressListener/]: Preparing spawn area: 0%
+[30Sep2026 07:58:37.720] [Worker-Main-1/INFO] [net.minecraft.server.level.progress.LoggerChunkProgressListener/]: Preparing spawn area: 0%
+[30Sep2026 07:58:38.195] [Worker-Main-1/INFO] [net.minecraft.server.level.progress.LoggerChunkProgressListener/]: Preparing spawn area: 0%
+[30Sep2026 07:58:38.697] [Worker-Main-1/INFO] [net.minecraft.server.level.progress.LoggerChunkProgressListener/]: Preparing spawn area: 0%
+[30Sep2026 07:58:39.259] [Worker-Main-1/INFO] [net.minecraft.server.level.progress.LoggerChunkProgressListener/]: Preparing spawn area: 0%
+[30Sep2026 07:58:39.747] [Worker-Main-1/INFO] [net.minecraft.server.level.progress.LoggerChunkProgressListener/]: Preparing spawn area: 0%
+[30Sep2026 07:58:40.262] [Worker-Main-1/INFO] [net.minecraft.server.level.progress.LoggerChunkProgressListener/]: Preparing spawn area: 0%
+[30Sep2026 07:58:40.767] [Worker-Main-1/INFO] [net.minecraft.server.level.progress.LoggerChunkProgressListener/]: Preparing spawn area: 0%
+[30Sep2026 07:58:41.198] [Worker-Main-1/INFO] [net.minecraft.server.level.progress.LoggerChunkProgressListener/]: Preparing spawn area: 0%
+[30Sep2026 07:58:41.769] [Worker-Main-1/INFO] [net.minecraft.server.level.progress.LoggerChunkProgressListener/]: Preparing spawn area: 0%
+[30Sep2026 07:58:42.207] [Worker-Main-1/INFO] [net.minecraft.server.level.progress.LoggerChunkProgressListener/]: Preparing spawn area: 0%
+[30Sep2026 07:58:42.700] [Worker-Main-1/INFO] [net.minecraft.server.level.progress.LoggerChunkProgressListener/]: Preparing spawn area: 0%
+[30Sep2026 07:58:43.236] [Worker-Main-1/INFO] [net.minecraft.server.level.progress.LoggerChunkProgressListener/]: Preparing spawn area: 0%
+[30Sep2026 07:58:43.760] [Worker-Main-1/INFO] [net.minecraft.server.level.progress.LoggerChunkProgressListener/]: Preparing spawn area: 0%
+[30Sep2026 07:58:44.195] [Worker-Main-1/INFO] [net.minecraft.server.level.progress.LoggerChunkProgressListener/]: Preparing spawn area: 0%
+[30Sep2026 07:58:44.738] [Worker-Main-1/INFO] [net.minecraft.server.level.progress.LoggerChunkProgressListener/]: Preparing spawn area: 0%
+[30Sep2026 07:58:45.207] [Worker-Main-1/INFO] [net.minecraft.server.level.progress.LoggerChunkProgressListener/]: Preparing spawn area: 0%
+[30Sep2026 07:58:45.700] [Worker-Main-1/INFO] [net.minecraft.server.level.progress.LoggerChunkProgressListener/]: Preparing spawn area: 0%
+[30Sep2026 07:58:46.202] [Worker-Main-1/INFO] [net.minecraft.server.level.progress.LoggerChunkProgressListener/]: Preparing spawn area: 0%
+[30Sep2026 07:58:46.737] [Worker-Main-1/INFO] [net.minecraft.server.level.progress.LoggerChunkProgressListener/]: Preparing spawn area: 0%
+[30Sep2026 07:58:47.196] [Worker-Main-1/INFO] [net.minecraft.server.level.progress.LoggerChunkProgressListener/]: Preparing spawn area: 0%
+[30Sep2026 07:58:47.695] [Worker-Main-1/INFO] [net.minecraft.server.level.progress.LoggerChunkProgressListener/]: Preparing spawn area: 0%
+[30Sep2026 07:58:48.251] [Worker-Main-1/INFO] [net.minecraft.server.level.progress.LoggerChunkProgressListener/]: Preparing spawn area: 0%
+[30Sep2026 07:58:48.720] [Worker-Main-1/INFO] [net.minecraft.server.level.progress.LoggerChunkProgressListener/]: Preparing spawn area: 0%
+[30Sep2026 07:58:49.254] [Worker-Main-1/INFO] [net.minecraft.server.level.progress.LoggerChunkProgressListener/]: Preparing spawn area: 0%
+[30Sep2026 07:58:49.699] [Worker-Main-1/INFO] [net.minecraft.server.level.progress.LoggerChunkProgressListener/]: Preparing spawn area: 0%
+[30Sep2026 07:58:50.222] [Worker-Main-1/INFO] [net.minecraft.server.level.progress.LoggerChunkProgressListener/]: Preparing spawn area: 0%
+[30Sep2026 07:58:50.702] [Worker-Main-1/INFO] [net.minecraft.server.level.progress.LoggerChunkProgressListener/]: Preparing spawn area: 0%
+[30Sep2026 07:58:51.212] [Worker-Main-1/INFO] [net.minecraft.server.level.progress.LoggerChunkProgressListener/]: Preparing spawn area: 0%
+[30Sep2026 07:58:51.744] [Worker-Main-1/INFO] [net.minecraft.server.level.progress.LoggerChunkProgressListener/]: Preparing spawn area: 0%
+[30Sep2026 07:58:52.250] [Worker-Main-1/INFO] [net.minecraft.server.level.progress.LoggerChunkProgressListener/]: Preparing spawn area: 0%
+[30Sep2026 07:58:52.753] [Worker-Main-1/INFO] [net.minecraft.server.level.progress.LoggerChunkProgressListener/]: Preparing spawn area: 0%
+[30Sep2026 07:58:53.198] [Worker-Main-1/INFO] [net.minecraft.server.level.progress.LoggerChunkProgressListener/]: Preparing spawn area: 0%
+[30Sep2026 07:58:53.729] [Worker-Main-1/INFO] [net.minecraft.server.level.progress.LoggerChunkProgressListener/]: Preparing spawn area: 0%
+[30Sep2026 07:58:54.222] [Worker-Main-1/INFO] [net.minecraft.server.level.progress.LoggerChunkProgressListener/]: Preparing spawn area: 0%
+[30Sep2026 07:58:54.724] [Worker-Main-1/INFO] [net.minecraft.server.level.progress.LoggerChunkProgressListener/]: Preparing spawn area: 0%
+[30Sep2026 07:58:55.249] [Worker-Main-1/INFO] [net.minecraft.server.level.progress.LoggerChunkProgressListener/]: Preparing spawn area: 0%
+[30Sep2026 07:58:55.746] [Worker-Main-1/INFO] [net.minecraft.server.level.progress.LoggerChunkProgressListener/]: Preparing spawn area: 0%
+[30Sep2026 07:58:56.238] [Worker-Main-1/INFO] [net.minecraft.server.level.progress.LoggerChunkProgressListener/]: Preparing spawn area: 0%
+[30Sep2026 07:58:56.717] [Worker-Main-1/INFO] [net.minecraft.server.level.progress.LoggerChunkProgressListener/]: Preparing spawn area: 0%
+[30Sep2026 07:58:57.208] [Worker-Main-1/INFO] [net.minecraft.server.level.progress.LoggerChunkProgressListener/]: Preparing spawn area: 0%
+[30Sep2026 07:58:57.699] [Worker-Main-1/INFO] [net.minecraft.server.level.progress.LoggerChunkProgressListener/]: Preparing spawn area: 0%
+[30Sep2026 07:58:58.238] [Worker-Main-1/INFO] [net.minecraft.server.level.progress.LoggerChunkProgressListener/]: Preparing spawn area: 0%
+[30Sep2026 07:58:58.733] [Worker-Main-1/INFO] [net.minecraft.server.level.progress.LoggerChunkProgressListener/]: Preparing spawn area: 0%
+[30Sep2026 07:58:59.196] [Worker-Main-1/INFO] [net.minecraft.server.level.progress.LoggerChunkProgressListener/]: Preparing spawn area: 0%
+[30Sep2026 07:58:59.862] [Worker-Main-1/INFO] [net.minecraft.server.level.progress.LoggerChunkProgressListener/]: Preparing spawn area: 0%
+[30Sep2026 07:59:00.197] [Worker-Main-1/INFO] [net.minecraft.server.level.progress.LoggerChunkProgressListener/]: Preparing spawn area: 0%
+[30Sep2026 07:59:00.744] [Worker-Main-1/INFO] [net.minecraft.server.level.progress.LoggerChunkProgressListener/]: Preparing spawn area: 0%
+[30Sep2026 07:59:01.245] [Worker-Main-1/INFO] [net.minecraft.server.level.progress.LoggerChunkProgressListener/]: Preparing spawn area: 0%
+[30Sep2026 07:59:01.704] [Worker-Main-1/INFO] [net.minecraft.server.level.progress.LoggerChunkProgressListener/]: Preparing spawn area: 0%
+[30Sep2026 07:59:02.205] [Worker-Main-1/INFO] [net.minecraft.server.level.progress.LoggerChunkProgressListener/]: Preparing spawn area: 0%
+[30Sep2026 07:59:02.704] [Worker-Main-1/INFO] [net.minecraft.server.level.progress.LoggerChunkProgressListener/]: Preparing spawn area: 0%
+[30Sep2026 07:59:03.210] [Worker-Main-1/INFO] [net.minecraft.server.level.progress.LoggerChunkProgressListener/]: Preparing spawn area: 0%
+[30Sep2026 07:59:03.701] [Worker-Main-1/INFO] [net.minecraft.server.level.progress.LoggerChunkProgressListener/]: Preparing spawn area: 0%
+[30Sep2026 07:59:04.207] [Worker-Main-1/INFO] [net.minecraft.server.level.progress.LoggerChunkProgressListener/]: Preparing spawn area: 0%
+[30Sep2026 07:59:04.708] [Worker-Main-1/INFO] [net.minecraft.server.level.progress.LoggerChunkProgressListener/]: Preparing spawn area: 0%
+[30Sep2026 07:59:05.208] [Worker-Main-1/INFO] [net.minecraft.server.level.progress.LoggerChunkProgressListener/]: Preparing spawn area: 0%
+[30Sep2026 07:59:05.710] [Worker-Main-1/INFO] [net.minecraft.server.level.progress.LoggerChunkProgressListener/]: Preparing spawn area: 0%
+[30Sep2026 07:59:06.199] [Worker-Main-1/INFO] [net.minecraft.server.level.progress.LoggerChunkProgressListener/]: Preparing spawn area: 0%
+[30Sep2026 07:59:06.699] [Worker-Main-1/INFO] [net.minecraft.server.level.progress.LoggerChunkProgressListener/]: Preparing spawn area: 0%
+[30Sep2026 07:59:07.201] [Worker-Main-1/INFO] [net.minecraft.server.level.progress.LoggerChunkProgressListener/]: Preparing spawn area: 0%
+[30Sep2026 07:59:07.713] [Worker-Main-1/INFO] [net.minecraft.server.level.progress.LoggerChunkProgressListener/]: Preparing spawn area: 0%
+[30Sep2026 07:59:08.285] [Worker-Main-1/INFO] [net.minecraft.server.level.progress.LoggerChunkProgressListener/]: Preparing spawn area: 0%
+[30Sep2026 07:59:08.729] [Worker-Main-1/INFO] [net.minecraft.server.level.progress.LoggerChunkProgressListener/]: Preparing spawn area: 0%
+[30Sep2026 07:59:09.210] [Worker-Main-1/INFO] [net.minecraft.server.level.progress.LoggerChunkProgressListener/]: Preparing spawn area: 0%
+[30Sep2026 07:59:09.741] [Worker-Main-1/INFO] [net.minecraft.server.level.progress.LoggerChunkProgressListener/]: Preparing spawn area: 0%
+[30Sep2026 07:59:10.230] [Worker-Main-1/INFO] [net.minecraft.server.level.progress.LoggerChunkProgressListener/]: Preparing spawn area: 0%
+[30Sep2026 07:59:10.702] [Worker-Main-1/INFO] [net.minecraft.server.level.progress.LoggerChunkProgressListener/]: Preparing spawn area: 0%
+[30Sep2026 07:59:11.202] [Worker-Main-1/INFO] [net.minecraft.server.level.progress.LoggerChunkProgressListener/]: Preparing spawn area: 0%
+[30Sep2026 07:59:11.727] [Worker-Main-1/INFO] [net.minecraft.server.level.progress.LoggerChunkProgressListener/]: Preparing spawn area: 0%
+[30Sep2026 07:59:12.209] [Worker-Main-1/INFO] [net.minecraft.server.level.progress.LoggerChunkProgressListener/]: Preparing spawn area: 0%
+[30Sep2026 07:59:12.752] [Worker-Main-1/INFO] [net.minecraft.server.level.progress.LoggerChunkProgressListener/]: Preparing spawn area: 0%
+[30Sep2026 07:59:13.223] [Worker-Main-1/INFO] [net.minecraft.server.level.progress.LoggerChunkProgressListener/]: Preparing spawn area: 0%
+[30Sep2026 07:59:13.740] [Worker-Main-1/INFO] [net.minecraft.server.level.progress.LoggerChunkProgressListener/]: Preparing spawn area: 0%
+[30Sep2026 07:59:14.203] [Worker-Main-1/INFO] [net.minecraft.server.level.progress.LoggerChunkProgressListener/]: Preparing spawn area: 0%
+[30Sep2026 07:59:14.704] [Worker-Main-1/INFO] [net.minecraft.server.level.progress.LoggerChunkProgressListener/]: Preparing spawn area: 0%
+[30Sep2026 07:59:15.200] [Worker-Main-1/INFO] [net.minecraft.server.level.progress.LoggerChunkProgressListener/]: Preparing spawn area: 0%
+[30Sep2026 07:59:15.699] [Worker-Main-1/INFO] [net.minecraft.server.level.progress.LoggerChunkProgressListener/]: Preparing spawn area: 0%
+[30Sep2026 07:59:16.239] [Worker-Main-1/INFO] [net.minecraft.server.level.progress.LoggerChunkProgressListener/]: Preparing spawn area: 0%
+[30Sep2026 07:59:16.704] [Worker-Main-1/INFO] [net.minecraft.server.level.progress.LoggerChunkProgressListener/]: Preparing spawn area: 0%
+[30Sep2026 07:59:17.213] [Worker-Main-1/INFO] [net.minecraft.server.level.progress.LoggerChunkProgressListener/]: Preparing spawn area: 0%
+[30Sep2026 07:59:17.731] [Worker-Main-1/INFO] [net.minecraft.server.level.progress.LoggerChunkProgressListener/]: Preparing spawn area: 0%
+[30Sep2026 07:59:18.208] [Worker-Main-1/INFO] [net.minecraft.server.level.progress.LoggerChunkProgressListener/]: Preparing spawn area: 0%
+[30Sep2026 07:59:18.726] [Worker-Main-1/INFO] [net.minecraft.server.level.progress.LoggerChunkProgressListener/]: Preparing spawn area: 0%
+[30Sep2026 07:59:19.242] [Worker-Main-1/INFO] [net.minecraft.server.level.progress.LoggerChunkProgressListener/]: Preparing spawn area: 0%
+[30Sep2026 07:59:19.715] [Worker-Main-1/INFO] [net.minecraft.server.level.progress.LoggerChunkProgressListener/]: Preparing spawn area: 0%
+[30Sep2026 07:59:20.200] [Worker-Main-1/INFO] [net.minecraft.server.level.progress.LoggerChunkProgressListener/]: Preparing spawn area: 0%
+[30Sep2026 07:59:20.733] [Worker-Main-1/INFO] [net.minecraft.server.level.progress.LoggerChunkProgressListener/]: Preparing spawn area: 0%
+[30Sep2026 07:59:21.214] [Worker-Main-1/INFO] [net.minecraft.server.level.progress.LoggerChunkProgressListener/]: Preparing spawn area: 0%
+[30Sep2026 07:59:21.704] [Worker-Main-1/INFO] [net.minecraft.server.level.progress.LoggerChunkProgressListener/]: Preparing spawn area: 0%
+[30Sep2026 07:59:22.234] [Worker-Main-1/INFO] [net.minecraft.server.level.progress.LoggerChunkProgressListener/]: Preparing spawn area: 0%
+[30Sep2026 07:59:22.699] [Worker-Main-1/INFO] [net.minecraft.server.level.progress.LoggerChunkProgressListener/]: Preparing spawn area: 0%
+[30Sep2026 07:59:23.200] [Worker-Main-1/INFO] [net.minecraft.server.level.progress.LoggerChunkProgressListener/]: Preparing spawn area: 0%
+[30Sep2026 07:59:23.702] [Worker-Main-1/INFO] [net.minecraft.server.level.progress.LoggerChunkProgressListener/]: Preparing spawn area: 0%
+[30Sep2026 07:59:24.227] [Worker-Main-1/INFO] [net.minecraft.server.level.progress.LoggerChunkProgressListener/]: Preparing spawn area: 0%
+[30Sep2026 07:59:24.711] [Worker-Main-1/INFO] [net.minecraft.server.level.progress.LoggerChunkProgressListener/]: Preparing spawn area: 0%
+[30Sep2026 07:59:25.219] [Worker-Main-1/INFO] [net.minecraft.server.level.progress.LoggerChunkProgressListener/]: Preparing spawn area: 0%
+[30Sep2026 07:59:25.697] [Worker-Main-1/INFO] [net.minecraft.server.level.progress.LoggerChunkProgressListener/]: Preparing spawn area: 0%
+[30Sep2026 07:59:26.208] [Worker-Main-1/INFO] [net.minecraft.server.level.progress.LoggerChunkProgressListener/]: Preparing spawn area: 0%
+[30Sep2026 07:59:26.701] [Worker-Main-1/INFO] [net.minecraft.server.level.progress.LoggerChunkProgressListener/]: Preparing spawn area: 0%
+[30Sep2026 07:59:27.208] [Worker-Main-1/INFO] [net.minecraft.server.level.progress.LoggerChunkProgressListener/]: Preparing spawn area: 0%
+[30Sep2026 07:59:27.727] [Worker-Main-1/INFO] [net.minecraft.server.level.progress.LoggerChunkProgressListener/]: Preparing spawn area: 0%
+[30Sep2026 07:59:28.223] [Worker-Main-1/INFO] [net.minecraft.server.level.progress.LoggerChunkProgressListener/]: Preparing spawn area: 0%
+[30Sep2026 07:59:28.702] [Worker-Main-1/INFO] [net.minecraft.server.level.progress.LoggerChunkProgressListener/]: Preparing spawn area: 0%
+[30Sep2026 07:59:29.197] [Worker-Main-1/INFO] [net.minecraft.server.level.progress.LoggerChunkProgressListener/]: Preparing spawn area: 0%
+[30Sep2026 07:59:29.696] [Worker-Main-1/INFO] [net.minecraft.server.level.progress.LoggerChunkProgressListener/]: Preparing spawn area: 0%
+[30Sep2026 07:59:30.213] [Worker-Main-1/INFO] [net.minecraft.server.level.progress.LoggerChunkProgressListener/]: Preparing spawn area: 0%
+[30Sep2026 07:59:30.706] [Worker-Main-1/INFO] [net.minecraft.server.level.progress.LoggerChunkProgressListener/]: Preparing spawn area: 0%
+[30Sep2026 07:59:31.200] [Worker-Main-1/INFO] [net.minecraft.server.level.progress.LoggerChunkProgressListener/]: Preparing spawn area: 0%
+[30Sep2026 07:59:31.738] [Worker-Main-1/INFO] [net.minecraft.server.level.progress.LoggerChunkProgressListener/]: Preparing spawn area: 0%
+[30Sep2026 07:59:32.196] [Worker-Main-1/INFO] [net.minecraft.server.level.progress.LoggerChunkProgressListener/]: Preparing spawn area: 0%
+[30Sep2026 07:59:32.782] [Worker-Main-1/INFO] [net.minecraft.server.level.progress.LoggerChunkProgressListener/]: Preparing spawn area: 0%
+[30Sep2026 07:59:33.218] [Worker-Main-1/INFO] [net.minecraft.server.level.progress.LoggerChunkProgressListener/]: Preparing spawn area: 0%
+[30Sep2026 07:59:33.701] [Worker-Main-1/INFO] [net.minecraft.server.level.progress.LoggerChunkProgressListener/]: Preparing spawn area: 0%
+[30Sep2026 07:59:34.222] [Worker-Main-1/INFO] [net.minecraft.server.level.progress.LoggerChunkProgressListener/]: Preparing spawn area: 0%
+[30Sep2026 07:59:34.696] [Worker-Main-1/INFO] [net.minecraft.server.level.progress.LoggerChunkProgressListener/]: Preparing spawn area: 0%
+[30Sep2026 07:59:35.206] [Worker-Main-1/INFO] [net.minecraft.server.level.progress.LoggerChunkProgressListener/]: Preparing spawn area: 0%
+[30Sep2026 07:59:35.774] [Worker-Main-1/INFO] [net.minecraft.server.level.progress.LoggerChunkProgressListener/]: Preparing spawn area: 2%
+[30Sep2026 07:59:37.402] [Worker-Main-1/INFO] [net.minecraft.server.level.progress.LoggerChunkProgressListener/]: Preparing spawn area: 9%
+[30Sep2026 07:59:37.406] [Worker-Main-1/INFO] [net.minecraft.server.level.progress.LoggerChunkProgressListener/]: Preparing spawn area: 9%
+[30Sep2026 07:59:37.406] [Worker-Main-1/INFO] [net.minecraft.server.level.progress.LoggerChunkProgressListener/]: Preparing spawn area: 9%
+[30Sep2026 07:59:37.735] [Worker-Main-1/INFO] [net.minecraft.server.level.progress.LoggerChunkProgressListener/]: Preparing spawn area: 38%
+[30Sep2026 07:59:38.199] [Worker-Main-1/INFO] [net.minecraft.server.level.progress.LoggerChunkProgressListener/]: Preparing spawn area: 43%
+[30Sep2026 07:59:38.912] [Worker-Main-1/INFO] [net.minecraft.server.level.progress.LoggerChunkProgressListener/]: Preparing spawn area: 60%
+[30Sep2026 07:59:40.496] [Server thread/INFO] [net.minecraft.server.level.progress.LoggerChunkProgressListener/]: Time elapsed: 74802 ms
+[30Sep2026 07:59:40.499] [Server thread/INFO] [net.minecraft.gametest.framework.GameTestServer/]: Started game test server
+[30Sep2026 07:59:40.511] [Server thread/INFO] [net.minecraftforge.server.permission.PermissionAPI/]: Successfully initialized permission handler forge:default_handler
+[30Sep2026 07:59:41.499] [Server thread/INFO] [net.minecraft.gametest.framework.GameTestBatchRunner/]: Running test batch 'defaultBatch:1' (5 tests)...
+[30Sep2026 07:59:41.557] [Server thread/INFO] [net.minecraft.gametest.framework.GameTestServer/]: 5 tests are now running!
+[30Sep2026 07:59:43.233] [Server thread/INFO] [net.minecraft.gametest.framework.GameTestServer/]: [+++++]
+[30Sep2026 07:59:43.235] [Server thread/INFO] [net.minecraft.gametest.framework.GameTestServer/]: ========= 5 GAME TESTS COMPLETE ======================
+[30Sep2026 07:59:43.235] [Server thread/INFO] [net.minecraft.gametest.framework.GameTestServer/]: All 5 required tests passed :)
+[30Sep2026 07:59:43.235] [Server thread/INFO] [net.minecraft.gametest.framework.GameTestServer/]: ====================================================
+[30Sep2026 07:59:43.238] [Server thread/INFO] [net.minecraft.server.MinecraftServer/]: Stopping server
+[30Sep2026 07:59:43.239] [Server thread/INFO] [net.minecraft.server.MinecraftServer/]: Saving players
+[30Sep2026 07:59:43.239] [Server thread/INFO] [net.minecraft.server.MinecraftServer/]: Saving worlds
+[30Sep2026 07:59:50.687] [Server thread/INFO] [net.minecraft.server.MinecraftServer/]: Saving chunks for level 'ServerLevel[world]'/minecraft:overworld
+[30Sep2026 07:59:51.507] [Server thread/INFO] [net.minecraft.server.MinecraftServer/]: Saving chunks for level 'ServerLevel[world]'/minecraft:the_nether
+[30Sep2026 07:59:51.508] [Server thread/INFO] [net.minecraft.server.MinecraftServer/]: Saving chunks for level 'ServerLevel[world]'/minecraft:the_end
+[30Sep2026 07:59:51.535] [Server thread/INFO] [net.minecraft.server.MinecraftServer/]: ThreadedAnvilChunkStorage (world): All chunks are saved
+[30Sep2026 07:59:51.535] [Server thread/INFO] [net.minecraft.server.MinecraftServer/]: ThreadedAnvilChunkStorage (DIM-1): All chunks are saved
+[30Sep2026 07:59:51.535] [Server thread/INFO] [net.minecraft.server.MinecraftServer/]: ThreadedAnvilChunkStorage (DIM1): All chunks are saved
+[30Sep2026 07:59:51.535] [Server thread/INFO] [net.minecraft.server.MinecraftServer/]: ThreadedAnvilChunkStorage: All dimensions are saved
+[30Sep2026 07:59:52.166] [Server thread/INFO] [net.minecraft.gametest.framework.GameTestServer/]: Game test server shutting down

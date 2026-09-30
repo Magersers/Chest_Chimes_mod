@@ -13,6 +13,7 @@ import net.minecraft.world.level.Level;
 public final class ClientState {
     private record Incoming(BlockPos pos, Assembly data, long expires) {}
     public static Message state;
+    private static net.minecraft.world.inventory.AbstractContainerMenu stateMenu;
     public static String status = "";
     private static final Map<UUID, Incoming> INCOMING = new HashMap<>();
     private static final Map<BlockPos, PcmSound> PLAYING = new HashMap<>();
@@ -31,7 +32,9 @@ public final class ClientState {
         checkDimension();
         switch (message.type()) {
             case Wire.STATE -> {
+                if (mc.player == null || mc.player.containerMenu.containerId != message.menu()) return;
                 state = message;
+                stateMenu = mc.player.containerMenu;
                 if (mc.screen instanceof ChimeScreen screen && screen.menuId() == message.menu())
                     screen.serverState(message);
             }
@@ -77,6 +80,10 @@ public final class ClientState {
             }
             default -> { }
         }
+    }
+
+    public static boolean hasState(net.minecraft.world.inventory.AbstractContainerMenu menu) {
+        return state != null && stateMenu == menu && state.menu() == menu.containerId;
     }
 
     public static void upload(int menu, AudioImporter.Imported selected, int millis, boolean shared) {
@@ -145,6 +152,6 @@ public final class ClientState {
         var sounds = Minecraft.getInstance().getSoundManager();
         PLAYING.values().forEach(sounds::stop);
         PLAYING.clear(); INCOMING.clear(); stopPreview();
-        state = null; status = ""; upload = null; saving = false; dimension = null;
+        state = null; stateMenu = null; status = ""; upload = null; saving = false; dimension = null;
     }
 }

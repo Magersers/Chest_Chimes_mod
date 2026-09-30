@@ -17,6 +17,8 @@ import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 
 @Mod.EventBusSubscriber(modid = ChestChimes.ID, value = Dist.CLIENT)
 public final class ClientEvents {
+    private static Button chestButton;
+    private static ContainerScreen chestScreen;
     @Mod.EventBusSubscriber(modid = ChestChimes.ID, value = Dist.CLIENT, bus = Mod.EventBusSubscriber.Bus.MOD)
     public static final class Setup {
         @SubscribeEvent public static void setup(FMLClientSetupEvent event) {
@@ -30,14 +32,22 @@ public final class ClientEvents {
         // The 12px button stays in the title strip, outside all inventory slots.
         Button button = Button.builder(Component.literal("\u266b"), unused -> {
             var state = ClientState.state;
-            if (state != null && state.menu() == chest.getMenu().containerId)
+            if (ClientState.hasState(chest.getMenu()))
                 Minecraft.getInstance().setScreen(new ChimeScreen(chest, state));
         }).bounds(left + 158, top + 3, 12, 12)
                 .tooltip(Tooltip.create(Component.translatable("chestchimes.title"))).build();
+        chestButton = button;
+        chestScreen = chest;
+        button.visible = ClientState.hasState(chest.getMenu());
         event.addListener(button);
     }
     @SubscribeEvent public static void tick(TickEvent.ClientTickEvent event) {
-        if (event.phase == TickEvent.Phase.END) ClientState.tick();
+        if (event.phase != TickEvent.Phase.END) return;
+        ClientState.tick();
+        if (chestButton != null && Minecraft.getInstance().screen == chestScreen)
+            chestButton.visible = ClientState.hasState(chestScreen.getMenu());
     }
-    @SubscribeEvent public static void logout(ClientPlayerNetworkEvent.LoggingOut event) { ClientState.clear(); }
+    @SubscribeEvent public static void logout(ClientPlayerNetworkEvent.LoggingOut event) {
+        ClientState.clear(); chestButton = null; chestScreen = null;
+    }
 }

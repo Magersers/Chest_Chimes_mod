@@ -38,18 +38,18 @@ WAV: RIFF PCM, 8/16 бит, моно/стерео, 8–96 кГц. OGG: **Vorbis*
 
 ## Сборка
 
-Нужны JDK 17 и Gradle 8.8:
+Нужен JDK 17; Gradle 8.8 скачивается автоматически через wrapper. В Windows используйте `gradlew.bat` вместо `./gradlew`:
 
 ```sh
-gradle build
+./gradlew build
 ```
 
 Готовый мод со встроенным декодером MP3: `build/libs/chest-chimes-1.0.0-all.jar`. Не устанавливайте одновременно обычный JAR и JAR с суффиксом `-all`.
 
 ```sh
-gradle test
-gradle runGameTestServer
-gradle runClient
+./gradlew test
+./gradlew runGameTestServer
+./gradlew runClient
 ```
 
 CI выполняет компиляцию, unit-тесты аудио/пакетов и GameTest на выделенном сервере, затем сохраняет JAR как артефакт. CI не заменяет ручную проверку графического интерфейса, системного окна выбора файла и звука на реальных клиентах.

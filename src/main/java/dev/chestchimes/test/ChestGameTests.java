@@ -25,7 +25,7 @@ public final class ChestGameTests {
         return tag;
     }
 
-    @GameTest(template = "forge:empty")
+    @GameTest(template = "empty")
     public static void persistenceAndReset(GameTestHelper helper) {
         BlockPos pos = new BlockPos(1, 1, 1);
         helper.setBlock(pos, Blocks.CHEST);
@@ -40,7 +40,7 @@ public final class ChestGameTests {
         helper.succeed();
     }
 
-    @GameTest(template = "forge:empty")
+    @GameTest(template = "empty")
     public static void doubleChestSharesSettings(GameTestHelper helper) {
         BlockPos a = helper.absolutePos(new BlockPos(1, 1, 1));
         var rightState = Blocks.CHEST.defaultBlockState().setValue(ChestBlock.FACING, Direction.NORTH)
@@ -57,7 +57,63 @@ public final class ChestGameTests {
         helper.succeed();
     }
 
-    @GameTest(template = "forge:empty")
+    @GameTest(template = "empty")
+    public static void uploadRequiresOpenChestAndCommitsAtomically(GameTestHelper helper) {
+        BlockPos pos = new BlockPos(1, 1, 1);
+        helper.setBlock(pos, Blocks.CHEST);
+        ChestBlockEntity chest = (ChestBlockEntity) helper.getBlockEntity(pos);
+        var player = new net.minecraftforge.common.util.FakePlayer(helper.getLevel(),
+                new com.mojang.authlib.GameProfile(java.util.UUID.randomUUID(), "ChimeTest"));
+        var absolute = helper.absolutePos(pos);
+        player.setPos(absolute.getX() + .5, absolute.getY(), absolute.getZ() + 1.5);
+        player.openMenu(chest);
+        int menu = player.containerMenu.containerId;
+        java.util.UUID transfer = java.util.UUID.randomUUID();
+        dev.chestchimes.server.ChestService.receive(player, new dev.chestchimes.network.Wire.Message(
+                dev.chestchimes.network.Wire.BEGIN, menu, transfer, BlockPos.ZERO, true, "test.wav", 4410, 4454, new byte[0]));
+        helper.assertTrue(ChestService.settings(chest).isEmpty(), "Incomplete upload changed the chest");
+        dev.chestchimes.server.ChestService.receive(player, new dev.chestchimes.network.Wire.Message(
+                dev.chestchimes.network.Wire.CHUNK, menu, transfer, BlockPos.ZERO, false, "", 0, 0, new byte[4410]));
+        helper.assertTrue(ChestService.settings(chest).getByteArray("pcm").length == 4410,
+                "Valid upload into open chest failed");
+        helper.assertTrue(ChestService.settings(chest).getUUID("owner").equals(player.getUUID()),
+                "Private audience owner must be the authenticated sender");
+        dev.chestchimes.server.ChestService.receive(player,
+                dev.chestchimes.network.Wire.Message.simple(dev.chestchimes.network.Wire.RESET, menu + 1));
+        helper.assertTrue(!ChestService.settings(chest).isEmpty(), "Forged menu ID reset a chest");
+        player.closeContainer();
+        dev.chestchimes.server.ChestService.receive(player,
+                dev.chestchimes.network.Wire.Message.simple(dev.chestchimes.network.Wire.RESET, menu));
+        helper.assertTrue(!ChestService.settings(chest).isEmpty(), "Closed chest accepted a reset");
+        helper.succeed();
+    }
+
+    @GameTest(template = "empty")
+    public static void replacesOpeningSoundOnlyUntilReset(GameTestHelper helper) {
+        BlockPos pos = new BlockPos(1, 1, 1);
+        helper.setBlock(pos, Blocks.CHEST);
+        BlockEntity chest = helper.getBlockEntity(pos);
+        ChestService.write(chest, sound());
+        var open = new net.minecraftforge.event.PlayLevelSoundEvent.AtPosition(helper.getLevel(),
+                chest.getBlockPos().getCenter(),
+                net.minecraft.core.registries.BuiltInRegistries.SOUND_EVENT.wrapAsHolder(net.minecraft.sounds.SoundEvents.CHEST_OPEN),
+                net.minecraft.sounds.SoundSource.BLOCKS, .5f, 1);
+        net.minecraftforge.common.MinecraftForge.EVENT_BUS.post(open);
+        helper.assertTrue(open.isCanceled(), "Vanilla opening sound was not suppressed");
+        var close = new net.minecraftforge.event.PlayLevelSoundEvent.AtPosition(helper.getLevel(),
+                chest.getBlockPos().getCenter(),
+                net.minecraft.core.registries.BuiltInRegistries.SOUND_EVENT.wrapAsHolder(net.minecraft.sounds.SoundEvents.CHEST_CLOSE),
+                net.minecraft.sounds.SoundSource.BLOCKS, .5f, 1);
+        net.minecraftforge.common.MinecraftForge.EVENT_BUS.post(close);
+        helper.assertTrue(!close.isCanceled(), "Closing sound must remain unchanged");
+        ChestService.write(chest, new CompoundTag());
+        open.setCanceled(false);
+        net.minecraftforge.common.MinecraftForge.EVENT_BUS.post(open);
+        helper.assertTrue(!open.isCanceled(), "Default opening sound was not restored");
+        helper.succeed();
+    }
+
+    @GameTest(template = "empty")
     public static void hooksApplyOnDedicatedServer(GameTestHelper helper) {
         for (Class<?> type : new Class<?>[] { ChestBlockEntity.class, EnderChestBlockEntity.class }) {
             helper.assertTrue(java.util.Arrays.stream(type.getDeclaredMethods())

@@ -122,10 +122,10 @@ public final class ChimeScreen extends Screen {
         g.fill(x, y - 12, x + 276, y + 211, 0xF021252E);
         g.drawCenteredString(font, title, width / 2, y - 2, 0xFFE8C978);
         Component file = filename.isEmpty() ? tr("standard") : Component.literal(filename);
-        g.drawCenteredString(font, font.substrByWidth(file, 250), width / 2, y + 16, 0xFFFFFFFF);
+        g.drawCenteredString(font, font.plainSubstrByWidth(file.getString(), 250), width / 2, y + 16, 0xFFFFFFFF);
         g.drawCenteredString(font, tr("limits"), width / 2, y + 30, 0xFFA7AAB5);
         if (!status.isEmpty())
-            g.drawCenteredString(font, font.substrByWidth(Component.translatable(status), 264),
+            g.drawCenteredString(font, font.plainSubstrByWidth(Component.translatable(status).getString(), 264),
                     width / 2, y + 172, success ? 0xFF8FDE9D : 0xFFEACB8A);
         super.render(g, mouseX, mouseY, partialTick);
     }

@@ -10,8 +10,8 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
-@Mixin(ChestBlockEntity.class)
-public abstract class ChestOpenMixin {
+@Mixin(EnderChestBlockEntity.class)
+public abstract class EnderChestOpenMixin {
     @Inject(method = "startOpen", at = @At("HEAD"))
     private void chestchimes$capture(Player player, CallbackInfo ci) {
         ChestService.capture(player, (BlockEntity) (Object) this);

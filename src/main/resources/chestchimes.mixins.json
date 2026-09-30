@@ -5,7 +5,8 @@
   "compatibilityLevel": "JAVA_17",
   "refmap": "chestchimes.refmap.json",
   "mixins": [
-    "ChestOpenMixin"
+    "ChestOpenMixin",
+    "EnderChestOpenMixin"
   ],
   "injectors": {
     "defaultRequire": 1

@@ -70,9 +70,11 @@ public final class ChestService {
     public static String identity(BlockEntity chest) {
         chest = canonical(chest);
         CompoundTag data = chest.getPersistentData();
-        if (!data.hasUUID(ID)) {
-            UUID id = UUID.randomUUID();
-            for (BlockEntity half : halves(chest)) { half.getPersistentData().putUUID(ID, id); half.setChanged(); }
+        UUID id = data.hasUUID(ID) ? data.getUUID(ID) : UUID.randomUUID();
+        for (BlockEntity half : halves(chest)) {
+            if (!half.getPersistentData().hasUUID(ID) || !half.getPersistentData().getUUID(ID).equals(id)) {
+                half.getPersistentData().putUUID(ID, id); half.setChanged();
+            }
         }
         ServerLevel level = (ServerLevel) chest.getLevel();
         return WorldIdentity.get(level) + "/" + UUID.nameUUIDFromBytes(level.dimension().location().toString().getBytes(java.nio.charset.StandardCharsets.UTF_8)) + "/" + data.getUUID(ID);

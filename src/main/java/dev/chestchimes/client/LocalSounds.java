@@ -12,7 +12,7 @@ public final class LocalSounds {
     private LocalSounds() {}
     private static LocalSoundStore store() {
         Minecraft mc = Minecraft.getInstance();
-        String account = mc.getUser().getProfileId();
+        String account = mc.getUser().getProfileId().toString();
         String server = mc.getCurrentServer() == null ? "singleplayer" : mc.getCurrentServer().ip;
         Path root = mc.gameDirectory.toPath().resolve("config/chestchimes/local")
                 .resolve(LocalSoundStore.hash(account + "/" + server));

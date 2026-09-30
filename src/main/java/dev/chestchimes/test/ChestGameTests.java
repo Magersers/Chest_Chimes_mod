@@ -49,6 +49,10 @@ public final class ChestGameTests {
         helper.getLevel().setBlock(a, rightState, 2);
         helper.getLevel().setBlock(b, rightState.setValue(ChestBlock.TYPE, ChestType.LEFT), 2);
         BlockEntity right = helper.getLevel().getBlockEntity(a), left = helper.getLevel().getBlockEntity(b);
+        right.getPersistentData().putUUID("chestchimes_id", java.util.UUID.randomUUID());
+        String identity = ChestService.identity(right);
+        helper.assertTrue(identity.equals(ChestService.identity(left)) && left.getPersistentData().hasUUID("chestchimes_id"),
+                "Joining a second half must synchronize an existing chest identity");
         ChestService.write(right, sound());
         helper.assertTrue(ChestService.canonical(left) == right, "Both halves must resolve to one chest");
         helper.assertTrue(ChestService.settings(left).getByteArray("pcm").length == 4410, "Left half lost sound");
@@ -127,7 +131,7 @@ public final class ChestGameTests {
                 @Override public void send(net.minecraft.network.protocol.Packet<?> packet) {
                     if (packet instanceof net.minecraft.network.protocol.game.ClientboundCustomPayloadPacket payload
                             && payload.getIdentifier().equals(new net.minecraft.resources.ResourceLocation("chestchimes", "audio"))) {
-                        var bytes = new net.minecraft.network.FriendlyByteBuf(payload.getData().copy());
+                        var bytes = payload.getData();
                         try {
                             bytes.readVarInt();
                             received.add(dev.chestchimes.network.Wire.Message.decode(bytes));

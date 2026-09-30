@@ -1,0 +1,25 @@
+plugins { id 'fabric-loom' version '1.7.4'; id 'maven-publish' }
+version='1.2.0'
+group='dev.chestchimes'
+base { archivesName='chest-chimes-fabric-1.21.1' }
+java.toolchain.languageVersion=JavaLanguageVersion.of(21)
+repositories { mavenCentral() }
+dependencies {
+    minecraft 'com.mojang:minecraft:1.21.1'
+    mappings loom.officialMojangMappings()
+    modImplementation 'net.fabricmc:fabric-loader:0.16.14'
+    modImplementation 'net.fabricmc.fabric-api:fabric-api:0.116.17+1.21.1'
+    implementation 'javazoom:jlayer:1.0.1'
+    include 'javazoom:jlayer:1.0.1'
+    testImplementation platform('org.junit:junit-bom:5.10.2')
+    testImplementation 'org.junit.jupiter:junit-jupiter'
+}
+loom {
+    mixin { defaultRefmapName='chestchimes.refmap.json' }
+    runs {
+        gameTestServer { server(); name 'GameTest'; vmArg '-Dfabric-api.gametest'; vmArg '-Dfabric-api.gametest.report-file=reports/gametest.xml'; runDir 'run-gametest' }
+    }
+}
+tasks.withType(JavaCompile).configureEach { options.encoding='UTF-8' }
+tasks.named('test') { useJUnitPlatform() }
+tasks.withType(Jar).configureEach { from('../../LICENSE'); from('../../THIRD_PARTY_NOTICES.md') }

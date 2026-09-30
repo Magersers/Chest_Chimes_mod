@@ -7,3 +7,5 @@ run-data/
 .classpath
 .project
 .settings/
+run-gametest/
+runs/

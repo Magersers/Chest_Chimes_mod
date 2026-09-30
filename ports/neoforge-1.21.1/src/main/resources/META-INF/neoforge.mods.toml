@@ -1,0 +1,28 @@
+modLoader="javafml"
+loaderVersion="[4,)"
+license="MIT"
+[[mods]]
+modId="chestchimes"
+version="1.2.0"
+displayName="Chest Chimes"
+logoFile="assets/chestchimes/logo.png"
+authors="Magersers"
+description='''
+Choose your own chest opening sounds, privately or for nearby players.
+WAV, OGG Vorbis and MP3; up to 10 MB input and 5 seconds playback.
+'''
+[[dependencies.chestchimes]]
+modId="neoforge"
+type="required"
+versionRange="[21.1.0,)"
+ordering="NONE"
+side="BOTH"
+[[dependencies.chestchimes]]
+modId="minecraft"
+type="required"
+versionRange="[1.21.1,1.21.2)"
+ordering="NONE"
+side="BOTH"
+
+[[mixins]]
+config="chestchimes.mixins.json"

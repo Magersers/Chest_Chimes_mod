@@ -6,7 +6,12 @@
 
 **Custom chest-opening sounds. Shared with friends, or just for you.**
 
-Minecraft **1.20.1** · **Forge 47.4.0+ (47.x)** · **Java 17**
+| Minecraft | Loader | Mod version | Java | Extra dependency |
+| --- | --- | --- | --- | --- |
+| 1.20.1 | Forge 47.4.0+ | 1.1.2 | 17 | None |
+| 1.20.1 | Fabric 0.16.14+ | 1.2.0 | 17 | Fabric API |
+| 1.21.1 | Fabric 0.16.14+ | 1.2.0 | 21 | Fabric API |
+| 1.21.1 | NeoForge 21.1.252+ | 1.2.0 | 21 | None |
 
 [Русское описание](README.ru.md) · [Public Russian guide](https://gist.github.com/Magersers/f215795505dce27ca765382e34bf5093) · [Downloads](https://github.com/Magersers/Chest_Chimes_mod/releases)
 
@@ -36,8 +41,8 @@ Chest Chimes adds a **♫ button right inside the chest screen**. No resource pa
 
 ## From file to first chime
 
-1. Install Minecraft 1.20.1, Forge 47.4.0+ (47.x) and Java 17.
-2. Put the Chest Chimes JAR in the mods folder. Remove any older Chest Chimes JAR first.
+1. Choose a supported Minecraft version and loader from the table above. For Fabric, also install Fabric API for that Minecraft version.
+2. Put the matching Chest Chimes JAR in the mods folder. Remove any older Chest Chimes JAR first.
 3. For multiplayer, install the same version on **the server and every player's client**.
 4. Open a chest, click **♫**, choose **Shared sound** or **Only me**, then select a file.
 5. Preview your clip, adjust its length and volume, and click **Save**. Close and reopen the chest to hear it.
@@ -48,7 +53,7 @@ Sounds survive restarts. Shared sounds are saved with the world; personal sounds
 
 A replacement chest gets a new identity and does not inherit its old sound settings. When several players view a chest, it closes when the last viewer leaves. Melody volume does not change vanilla closing volume.
 
-This release targets Forge 1.20.1. Barrels, chest minecarts and third-party containers are not supported.
+Loader builds are separate: use the same Minecraft version, loader and mod build on both sides. Barrels, chest minecarts and third-party containers are not supported.
 
 ## License and credits
 
@@ -58,6 +63,6 @@ Chest Chimes code is licensed under [MIT](LICENSE). Keep the copyright and licen
 
 ## Building
 
-Use JDK 17 and the included Gradle wrapper. Run ./gradlew build (gradlew.bat on Windows). The distributable is build/libs/chest-chimes-1.1.2-all.jar.
+See [multiloader build instructions](ports/README.md) for Fabric and NeoForge. For the original Forge build, use JDK 17 and the included Gradle wrapper. Run ./gradlew build (gradlew.bat on Windows). The distributable is build/libs/chest-chimes-1.1.2-all.jar.
 
 Run ./gradlew test for audio/storage unit tests and ./gradlew runGameTestServer for server integration tests. See [manual test scenarios](docs/TESTING.md) for GUI and playback checks.

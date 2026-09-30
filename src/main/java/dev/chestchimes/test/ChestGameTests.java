@@ -107,9 +107,12 @@ public final class ChestGameTests {
         net.minecraftforge.common.MinecraftForge.EVENT_BUS.post(close);
         helper.assertTrue(!close.isCanceled(), "Closing sound must remain unchanged");
         ChestService.write(chest, new CompoundTag());
-        open.setCanceled(false);
-        net.minecraftforge.common.MinecraftForge.EVENT_BUS.post(open);
-        helper.assertTrue(!open.isCanceled(), "Default opening sound was not restored");
+        var restored = new net.minecraftforge.event.PlayLevelSoundEvent.AtPosition(helper.getLevel(),
+                chest.getBlockPos().getCenter(),
+                net.minecraft.core.registries.BuiltInRegistries.SOUND_EVENT.wrapAsHolder(net.minecraft.sounds.SoundEvents.CHEST_OPEN),
+                net.minecraft.sounds.SoundSource.BLOCKS, .5f, 1);
+        net.minecraftforge.common.MinecraftForge.EVENT_BUS.post(restored);
+        helper.assertTrue(!restored.isCanceled(), "Default opening sound was not restored");
         helper.succeed();
     }
 

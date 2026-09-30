@@ -84,3 +84,20 @@ jobs:
           git -C _builds add .
           git -C _builds commit -m "Build Chest Chimes from $SOURCE_SHA"
           git -C _builds push origin HEAD:builds
+      - name: Publish verified release from main
+        if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+        env:
+          GH_TOKEN: ${{ github.token }}
+          RELEASE_COMMIT: ${{ github.sha }}
+        run: |
+          jar=$(find build/libs -maxdepth 1 -name '*-all.jar' -print -quit)
+          version=$(basename "$jar" | sed -E 's/^chest-chimes-(.*)-all.jar$/\1/')
+          tag="v$version"
+          # Never replace an existing published version with different binaries.
+          if gh release view "$tag" >/dev/null 2>&1; then
+            echo "Release $tag already exists; leaving it unchanged."
+            exit 0
+          fi
+          gh release create "$tag" "$jar" "_builds/$(basename "$jar").sha256" \
+            --target "$RELEASE_COMMIT" --title "Chest Chimes $version" \
+            --notes-file docs/RELEASE_NOTES.md

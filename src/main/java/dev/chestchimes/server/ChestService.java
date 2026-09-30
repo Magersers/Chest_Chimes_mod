@@ -120,6 +120,21 @@ public final class ChestService {
     @SubscribeEvent public static void vanillaSound(PlayLevelSoundEvent.AtPosition event) {
         if (event.getLevel().isClientSide || event.getSound() == null) return;
         var sound = event.getSound().value();
+        if (sound == SoundEvents.CHEST_CLOSE || sound == SoundEvents.ENDER_CHEST_CLOSE) {
+            BlockEntity chest = event.getLevel().getBlockEntity(BlockPos.containing(event.getPosition()));
+            if (isChest(chest)) {
+                chest = canonical(chest);
+                String key = identity(chest);
+                // The vanilla opener counter emits this only when the last viewer
+                // closes the lid (and only once for a double chest).
+                // Stop both personal and shared melodies before the vanilla packet.
+                for (ServerPlayer listener : ((ServerLevel) event.getLevel()).players())
+                    Wire.toPlayer(listener, new Message(Wire.CLOSE, 0, ZERO, chest.getBlockPos(), false,
+                            "", 0, 0, new byte[0], key, 100));
+                LAST_OPEN.remove(key);
+            }
+            return; // Keep Minecraft's sound, position, volume and pitch unchanged.
+        }
         if (sound != SoundEvents.CHEST_OPEN && sound != SoundEvents.ENDER_CHEST_OPEN) return;
         // Every opening is routed to clients so private overrides also work with an unconfigured chest.
         if (isChest(event.getLevel().getBlockEntity(BlockPos.containing(event.getPosition())))) event.setCanceled(true);

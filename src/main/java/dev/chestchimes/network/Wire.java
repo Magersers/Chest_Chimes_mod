@@ -15,7 +15,7 @@ import net.minecraftforge.network.simple.SimpleChannel;
 
 public final class Wire {
     public static final int BEGIN = 0, CHUNK = 1, RESET = 2, ADJUST = 3, MIGRATED = 4;
-    public static final int STATE = 10, REPLY = 11, PLAY_BEGIN = 12, PLAY_CHUNK = 13, STOP = 14, STATE_CHUNK = 15, MIGRATE = 16, MIGRATE_CHUNK = 17;
+    public static final int STATE = 10, REPLY = 11, PLAY_BEGIN = 12, PLAY_CHUNK = 13, STOP = 14, STATE_CHUNK = 15, MIGRATE = 16, MIGRATE_CHUNK = 17, CLOSE = 18;
     private static final UUID ZERO = new UUID(0, 0);
     public static Consumer<Message> clientReceiver = message -> {};
     private static final SimpleChannel CHANNEL = NetworkRegistry.newSimpleChannel(

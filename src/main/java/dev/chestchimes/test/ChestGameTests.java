@@ -122,6 +122,96 @@ public final class ChestGameTests {
     }
 
 
+    public static final class CloseSounds {
+        final java.util.List<net.minecraftforge.event.PlayLevelSoundEvent.AtPosition> events = new java.util.ArrayList<>();
+        @net.minecraftforge.eventbus.api.SubscribeEvent(receiveCanceled = true)
+        public void played(net.minecraftforge.event.PlayLevelSoundEvent.AtPosition event) {
+            if (event.getSound() != null && (event.getSound().value() == net.minecraft.sounds.SoundEvents.CHEST_CLOSE
+                    || event.getSound().value() == net.minecraft.sounds.SoundEvents.ENDER_CHEST_CLOSE)) events.add(event);
+        }
+    }
+
+    @GameTest(template = "empty")
+    public static void singleChestClosesWithVanillaSound(GameTestHelper helper) { closingLifecycle(helper, "single"); }
+
+    @GameTest(template = "empty")
+    public static void trappedChestClosesWithVanillaSound(GameTestHelper helper) { closingLifecycle(helper, "trapped"); }
+
+    @GameTest(template = "empty")
+    public static void doubleChestClosesOnceWithVanillaSound(GameTestHelper helper) { closingLifecycle(helper, "double"); }
+
+    @GameTest(template = "empty")
+    public static void enderChestClosesWithVanillaSound(GameTestHelper helper) { closingLifecycle(helper, "ender"); }
+
+    private static void closingLifecycle(GameTestHelper helper, String kind) {
+        var level = helper.getLevel();
+        BlockPos pos = helper.absolutePos(new BlockPos(1, 1, 1));
+        var block = kind.equals("ender") ? Blocks.ENDER_CHEST : kind.equals("trapped") ? Blocks.TRAPPED_CHEST : Blocks.CHEST;
+        level.setBlock(pos, block.defaultBlockState(), 2);
+        BlockEntity chest = level.getBlockEntity(pos);
+        net.minecraft.world.Container inventory;
+        if (kind.equals("double")) {
+            var right = Blocks.CHEST.defaultBlockState().setValue(ChestBlock.FACING, Direction.NORTH)
+                    .setValue(ChestBlock.TYPE, ChestType.RIGHT);
+            level.setBlock(pos, right, 2);
+            BlockPos other = pos.relative(ChestBlock.getConnectedDirection(right));
+            level.setBlock(other, right.setValue(ChestBlock.TYPE, ChestType.LEFT), 2);
+            chest = level.getBlockEntity(pos);
+            inventory = new net.minecraft.world.CompoundContainer((net.minecraft.world.Container) chest,
+                    (net.minecraft.world.Container) level.getBlockEntity(other));
+        } else inventory = chest instanceof net.minecraft.world.Container container ? container : null;
+        ChestService.write(chest, sound());
+        String key = ChestService.identity(chest);
+        var first = new ObservedPlayer(level, "FirstViewer");
+        var second = new ObservedPlayer(level, "LastViewer");
+        var probe = new CloseSounds();
+        // A nearby listener records real mod packets sent by the sound event hook.
+        level.players().add(first);
+        net.minecraftforge.common.MinecraftForge.EVENT_BUS.register(probe);
+        try {
+            net.minecraft.world.Container contents = inventory;
+            BlockEntity target = chest;
+            java.util.function.Consumer<ObservedPlayer> open = player -> {
+                player.setPos(pos.getX() + .5, pos.getY(), pos.getZ() + 1.5);
+                net.minecraft.world.Container actual = contents;
+                if (target instanceof EnderChestBlockEntity ender) {
+                    player.getEnderChestInventory().setActiveChest(ender);
+                    actual = player.getEnderChestInventory();
+                }
+                net.minecraft.world.Container menuContents = actual;
+                player.openMenu(new net.minecraft.world.SimpleMenuProvider((id, inv, owner) -> kind.equals("double")
+                        ? net.minecraft.world.inventory.ChestMenu.sixRows(id, inv, menuContents)
+                        : net.minecraft.world.inventory.ChestMenu.threeRows(id, inv, menuContents),
+                        net.minecraft.network.chat.Component.literal("Close test")));
+            };
+            open.accept(first);
+            open.accept(second);
+            first.received.clear();
+            first.closeContainer();
+            helper.assertTrue(probe.events.isEmpty() && first.received.stream().noneMatch(m -> m.type() == dev.chestchimes.network.Wire.CLOSE),
+                    "One viewer leaving must not close the lid or stop its melody");
+            second.closeContainer();
+            helper.assertTrue(probe.events.size() == 1 && !probe.events.get(0).isCanceled(),
+                    "Last viewer must produce exactly one uncancelled vanilla close sound");
+            var event = probe.events.get(0);
+            helper.assertTrue(event.getSound().value() == (kind.equals("ender")
+                            ? net.minecraft.sounds.SoundEvents.ENDER_CHEST_CLOSE : net.minecraft.sounds.SoundEvents.CHEST_CLOSE),
+                    "Closing must use the original sound for this chest type");
+            helper.assertTrue(first.received.stream().filter(m -> m.type() == dev.chestchimes.network.Wire.CLOSE && m.key().equals(key)).count() == 1,
+                    "Closing must stop the matching personal/shared melody exactly once");
+            first.received.clear();
+            open.accept(first);
+            helper.assertTrue(first.received.stream().anyMatch(m -> m.type() == dev.chestchimes.network.Wire.PLAY_BEGIN),
+                    "Reopening after close must start a fresh melody, even in the same tick");
+            first.closeContainer();
+            helper.succeed();
+        } finally {
+            first.closeContainer(); second.closeContainer();
+            level.players().remove(first);
+            net.minecraftforge.common.MinecraftForge.EVENT_BUS.unregister(probe);
+        }
+    }
+
     private static final class ObservedPlayer extends net.minecraftforge.common.util.FakePlayer {
         final java.util.List<dev.chestchimes.network.Wire.Message> received = new java.util.ArrayList<>();
         ObservedPlayer(net.minecraft.server.level.ServerLevel level, String name) {

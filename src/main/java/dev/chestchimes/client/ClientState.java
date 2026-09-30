@@ -64,6 +64,9 @@ public final class ClientState {
                 if (mc.player != null && mc.player.containerMenu.containerId == message.menu()) begin(message);
             }
             case Wire.STATE_CHUNK, Wire.PLAY_CHUNK, Wire.MIGRATE_CHUNK -> chunk(message);
+            // Arrives before Minecraft's original close sound packet. Also discard any
+            // unfinished stream so a late chunk cannot restart the opening melody.
+            case Wire.CLOSE -> localChanged(message.key());
             case Wire.STOP -> {
                 INCOMING.values().removeIf(in -> in.header.type() == Wire.PLAY_BEGIN && in.header.key().equals(message.key()));
                 Playing active = PLAYING.get(message.key());

@@ -1,0 +1,14 @@
+{
+  "required": true,
+  "minVersion": "0.8",
+  "package": "dev.chestchimes.mixin",
+  "compatibilityLevel": "JAVA_17",
+  "refmap": "chestchimes.refmap.json",
+  "mixins": [
+    "ChestOpenMixin",
+    "EnderChestOpenMixin"
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}

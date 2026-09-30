@@ -1,0 +1,103 @@
+name: Build and verify
+on:
+  push:
+    branches-ignore: [builds]
+  workflow_dispatch:
+concurrency:
+  group: build-${{ github.ref }}
+  cancel-in-progress: true
+permissions:
+  contents: write
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '17'
+      - uses: gradle/actions/setup-gradle@v4
+        with:
+          cache-read-only: false
+      - name: Build and unit tests
+        run: ./gradlew --no-daemon build
+      - name: Dedicated server integration tests
+        run: ./gradlew --no-daemon runGameTestServer
+      - uses: actions/upload-artifact@v4
+        continue-on-error: true
+        if: always()
+        with:
+          name: test-reports
+          path: |
+            build/reports/tests/
+            run/logs/
+      - name: Check packaged mod
+        run: |
+          python3 - <<'PY'
+          import json, pathlib, zipfile
+          jars = list(pathlib.Path('build/libs').glob('*-all.jar'))
+          assert len(jars) == 1, jars
+          with zipfile.ZipFile(jars[0]) as jar:
+              assert 'META-INF/mods.toml' in jar.namelist()
+              assert 'chestchimes.refmap.json' in jar.namelist()
+              assert b'MixinConfigs: chestchimes.mixins.json' in jar.read('META-INF/MANIFEST.MF')
+              metadata = json.loads(jar.read('META-INF/jarjar/metadata.json'))
+              assert any(dep['identifier']['artifact'] == 'jlayer' for dep in metadata['jars'])
+              for dep in metadata['jars']:
+                  assert dep['path'] in jar.namelist()
+          print('Packaged JAR, mappings, mixins and embedded MP3 decoder verified.')
+          PY
+      - name: Checkout download branch
+        uses: actions/checkout@v4
+        with:
+          ref: builds
+          path: _builds
+      - name: Save verified JAR in repository
+        env:
+          SOURCE_SHA: ${{ github.sha }}
+          BUILD_RUN: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
+        run: |
+          cp build/libs/*-all.jar _builds/
+          mkdir -p _builds/test-results
+          cp build/test-results/test/TEST-*.xml _builds/test-results/
+          cp run/logs/latest.log _builds/gametest.log
+          python3 - <<'PY'
+          import hashlib, os, pathlib
+          folder = pathlib.Path('_builds')
+          jar = folder / next(pathlib.Path('build/libs').glob('*-all.jar')).name
+          checksum = hashlib.sha256(jar.read_bytes()).hexdigest()
+          (folder / (jar.name + '.sha256')).write_text(checksum + '  ' + jar.name + '\n')
+          (folder / 'README.md').write_text(
+              '# Chest Chimes — готовая сборка\n\n'
+              '[Скачать JAR](' + jar.name + '?raw=true)\n\n'
+              'Minecraft 1.20.1 · Forge 47.4.0+ (47.x) · Java 17.\n\n'
+              'Поместите JAR в папку mods клиента и сервера. Отдельные библиотеки не нужны.\n\n'
+              'Исходный коммит: ' + os.environ['SOURCE_SHA'] + '\n\n'
+              '[Успешные автоматические проверки](' + os.environ['BUILD_RUN'] + ')\n\n'
+              'Графический интерфейс, системный диалог и реальное воспроизведение требуют ручной проверки.\n',
+              encoding='utf-8')
+          PY
+          git -C _builds config user.name "github-actions[bot]"
+          git -C _builds config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git -C _builds add .
+          git -C _builds commit -m "Build Chest Chimes from $SOURCE_SHA"
+          git -C _builds push origin HEAD:builds
+      - name: Publish verified release from main
+        if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+        env:
+          GH_TOKEN: ${{ github.token }}
+          RELEASE_COMMIT: ${{ github.sha }}
+        run: |
+          jar=$(find build/libs -maxdepth 1 -name '*-all.jar' -print -quit)
+          version=$(basename "$jar" | sed -E 's/^chest-chimes-(.*)-all.jar$/\1/')
+          tag="v$version"
+          # Never replace an existing published version with different binaries.
+          if gh release view "$tag" >/dev/null 2>&1; then
+            echo "Release $tag already exists; leaving it unchanged."
+            exit 0
+          fi
+          gh release create "$tag" "$jar" "_builds/$(basename "$jar").sha256" \
+            --target "$RELEASE_COMMIT" --title "Chest Chimes $version" \
+            --notes-file docs/RELEASE_NOTES.md

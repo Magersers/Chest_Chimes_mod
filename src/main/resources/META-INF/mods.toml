@@ -1,10 +1,11 @@
 modLoader="javafml"
 loaderVersion="[47,48)"
-license="All Rights Reserved"
+license="MIT"
 [[mods]]
 modId="chestchimes"
-version="1.1.1"
+version="1.1.2"
 displayName="Chest Chimes"
+logoFile="assets/chestchimes/logo.png"
 authors="Magersers"
 description='''
 Choose your own chest opening sounds, privately or for nearby players.

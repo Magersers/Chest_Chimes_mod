@@ -1,9 +1,10 @@
-Chest Chimes 1.1.1 для Minecraft 1.20.1, Forge 47.4.0+ (47.x), Java 17.
+# Chest Chimes 1.1.2
 
-При закрытии крышки общий или личный звук открытия теперь останавливается, чтобы не заглушать стандартное закрытие Minecraft. Оригинальные звук, громкость и высота закрытия сохраняются. Громкость мелодии 0% также не отключает закрытие.
+Minecraft 1.20.1 · Forge 47.4.0+ (47.x) · Java 17.
 
-Поддерживаются обычные, двойные, сундуки-ловушки и эндер-сундуки. Когда сундук открыт у нескольких игроков, закрытие происходит при выходе последнего. Незавершённая передача мелодии сбрасывается, а повторное открытие может сразу запустить новый звук.
+- Added an original chest-and-music icon, with manual raster finishing after generation.
+- Added English documentation and a linked Russian guide.
+- Licensed Chest Chimes under MIT; included LICENSE and third-party notices in the JAR. The embedded JLayer decoder retains LGPL-2.1-or-later.
+- Includes the 1.1.1 fix: opening melodies stop when the lid closes, preserving Minecraft’s original closing sound.
 
-Скачайте `chest-chimes-1.1.1-all.jar`, удалите предыдущий JAR Chest Chimes из `mods` и установите новый на клиент и сервер. Сохранённые звуки и настройки версии 1.1 остаются совместимыми. MP3-декодер включён в JAR; дополнительные библиотеки не нужны.
-
-Публикация выполняется после успешной сборки, unit-тестов, серверных GameTest и проверки содержимого JAR. Рядом приложена контрольная сумма SHA-256.
+Replace the old Chest Chimes JAR in mods on both the server and clients. Existing 1.1 settings remain compatible.

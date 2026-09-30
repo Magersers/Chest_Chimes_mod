@@ -1,73 +1,63 @@
-# Chest Chimes 1.1.1
+# Chest Chimes
 
-**Minecraft Java 1.20.1 · Forge 47.4.0+ (47.x) · Java 17**
+<p align="center"><img src="docs/assets/chest-chimes-icon-400.png" width="240" alt="An open chest with a glowing musical note and sound waves"></p>
 
-Кнопка **♫** в заголовке сундука открывает настройки звуков. Поддерживаются обычные, двойные, сундуки-ловушки и эндер-сундуки.
+### A little personality in every lid.
 
-## Два независимых звука
+**Custom chest-opening sounds. Shared with friends, or just for you.**
 
-Вкладка **«Общий звук»** показывает запись, установленную для сундука на сервере: имя файла, длительность и громкость. Любой игрок, которому разрешено открыть сундук, может прослушать её, изменить громкость/длительность, заменить файл или удалить общий звук. Изменения обновляются и у других игроков, уже открывших настройки. Несохранённый выбор файла не заменяется чужими изменениями; при одновременном редактировании действует последнее успешное сохранение.
+Minecraft **1.20.1** · **Forge 47.4.0+ (47.x)** · **Java 17**
 
-Вкладка **«Только я»** задаёт личную замену. Файл, громкость и длительность хранятся **только на компьютере этого игрока**, отдельно от общего звука. Личная запись не отправляется на сервер или другим игрокам. Данные разделены по аккаунту, серверу, идентификатору мира/измерения и сундука.
+[Русское описание](README.ru.md) · [Public Russian guide](https://gist.github.com/Magersers/f215795505dce27ca765382e34bf5093) · [Downloads](https://github.com/Magersers/Chest_Chimes_mod/releases)
 
-При любом открытии сундука, в том числе другим игроком, каждый находящийся рядом клиент выбирает звук:
+---
 
-1. Свой сохранённый **личный** звук.
-2. Если личного нет — **общий** звук сундука.
-3. Если общего тоже нет — **стандартный** звук Minecraft.
+Turn a chest into a tiny musical moment. A soft chime for your storage room, a dramatic sting for your valuables, or a silly sound that makes your friends smile — choose a clip, save it, and open the lid.
 
-Например: у Алисы личный звук A, у сундука общий B. Кто бы ни открыл сундук, Алиса слышит A, Боб — B. Если Боб установит свой личный C, он услышит C, а Алиса по-прежнему A. Обновление/удаление общего звука не прерывает и не удаляет личную запись.
+Chest Chimes adds a **♫ button right inside the chest screen**. No resource pack editing or commands needed.
 
-Личный звук с громкостью **0%** означает намеренную тишину и тоже имеет приоритет. «Удалить мой звук» возвращает общий/стандартный звук только этому игроку. «Удалить общий звук» не удаляет личные настройки игроков.
+## One chest. Your sound.
 
-## Аудио и громкость
+**Shared sound** — Set a sound that nearby players can hear. The recording stays with the chest in the world. Anyone who can open the chest can preview and change its shared sound.
 
-- Системный выбор **WAV PCM, OGG Vorbis, MP3** с компьютера.
-- Максимум **10 000 000 байт (10 МБ)** для исходного файла; проверяются расширение, сигнатура и декодирование.
-- Длительность **0,1–5 секунд**; используется начало файла. Длинная запись обрезается, короткая не дополняется тишиной.
-- Отдельный ползунок **громкости 0–100%** для общего и личного звука. Дополнительно учитываются настройки Minecraft «Блоки» и общая громкость.
-- Предпрослушивание как выбранного файла, так и сохранённых общего/личного звуков.
-- Слышимость в том же измерении в радиусе 16 блоков, с затуханием по расстоянию.
-- Повторные открытия не накладывают звук одного сундука. Разные сундуки могут звучать одновременно.
-- Русский и английский интерфейс.
+**Only me** — Give the same chest your own personal sound. It stays on your computer and is never uploaded to the server. You hear your choice even when someone else opens the chest.
 
-WAV: RIFF PCM 8/16 бит, моно/стерео, 8–96 кГц. OGG: Vorbis (не Opus), моно/стерео, 8–96 кГц. Передача общего звука: PCM mono 16-bit 22050 Hz, максимум 220 500 байт, пакетами до 24 000 байт.
+**Personal → Shared → Vanilla** — Your personal sound takes priority. Without one, you hear the shared sound; without either, you hear Minecraft's original opening sound. A personal sound at 0% intentionally silences opening for you.
 
-## Установка
+## Small details, big charm
 
-1. Установите Minecraft 1.20.1, Forge 47.4.0+ в ветке 47.x и Java 17.
-2. [Скачайте chest-chimes-1.1.1-all.jar из релиза 1.1.1](https://github.com/Magersers/Chest_Chimes_mod/releases/tag/v1.1.1). Резервная копия есть в ветке [builds](https://github.com/Magersers/Chest_Chimes_mod/tree/builds).
-3. Удалите прежнюю версию Chest Chimes из `mods` и положите новый JAR.
-4. Для сетевой игры обновите мод **на сервере и у всех игроков**: для исправленного закрытия нужна версия 1.1.1 на обеих сторонах. Формат данных 1.1 сохранён; протокол 1.1 несовместим с 1.0.
-5. Откройте сундук → ♫ → выберите вкладку → файл/громкость/длительность → **«Сохранить»**. Закройте и снова откройте сундук.
+- **Bring your own audio:** WAV PCM, OGG Vorbis or MP3. The MP3 decoder is included.
+- **Keep it short:** choose a 0.1–5 second clip from an input file up to 10 MB.
+- **Make it fit:** separate 0–100% volume controls, trimming and instant preview.
+- **Hear it nearby:** positional audio fades with distance, within 16 blocks.
+- **Keep the familiar close:** the opening melody stops when the lid closes, leaving Minecraft's original closing sound intact.
+- **Use your favorite chest:** regular, double, trapped and ender chests.
+- **Feel at home:** English and Russian menus.
 
-MP3-декодер встроен; дополнительные библиотеки не нужны.
+## From file to first chime
 
-## Хранение и обновление с 1.0
+1. Install Minecraft 1.20.1, Forge 47.4.0+ (47.x) and Java 17.
+2. Put the Chest Chimes JAR in the mods folder. Remove any older Chest Chimes JAR first.
+3. For multiplayer, install the same version on **the server and every player's client**.
+4. Open a chest, click **♫**, choose **Shared sound** or **Only me**, then select a file.
+5. Preview your clip, adjust its length and volume, and click **Save**. Close and reopen the chest to hear it.
 
-Общий звук хранится в NBT блока мира. Личные записи: `config/chestchimes/local/` внутри папки игры. Сохраняется сам выбранный фрагмент, поэтому исходный файл больше не требуется. Для переноса личных настроек на другой компьютер скопируйте эту папку; автоматически через сервер они не синхронизируются.
+## Good to know
 
-У сундука есть постоянный UUID: изменение общего звука не сбрасывает личные настройки, а новый сундук на месте разрушенного получает новую идентичность. Двойной сундук использует одну идентичность и общие настройки; после разделения обе половины наследуют их. Эндер-сундук настраивается по физическому блоку, не по личному инвентарю.
+Sounds survive restarts. Shared sounds are saved with the world; personal sounds live in config/chestchimes/local/. You no longer need the original audio file after saving.
 
-В версии 1.0 режим «только я» хранился на сервере. При обновлении старые приватные записи изолируются от общих и отправляются **только прежнему владельцу**, когда он открывает сундук. После успешного локального сохранения клиент подтверждает перенос, сервер удаляет свою старую копию. До подтверждения она сохраняется для восстановления и не раскрывается другим игрокам.
+A replacement chest gets a new identity and does not inherit its old sound settings. When several players view a chest, it closes when the last viewer leaves. Melody volume does not change vanilla closing volume.
 
-После обрезки для увеличения длительности выберите исходный файл заново. Бочки, вагонетки и сторонние контейнеры не поддерживаются. При закрытии крышки мелодия открытия останавливается, включая личную запись, и звучит стандартное закрытие Minecraft. Настройка громкости мелодии (даже 0%) не отключает закрытие; оно учитывает общую громкость и категорию «Блоки». Если сундук смотрят несколько игроков, это происходит при выходе последнего.
+This release targets Forge 1.20.1. Barrels, chest minecarts and third-party containers are not supported.
 
-## Сборка и проверки
+## License and credits
 
-Нужен JDK 17. Gradle 8.8 скачивается через wrapper; в Windows используйте `gradlew.bat`.
+**Made by Magersers · MIT license · Modpack-friendly**
 
-```sh
-./gradlew build
-./gradlew test
-./gradlew runGameTestServer
-./gradlew runClient
-```
+Chest Chimes code is licensed under [MIT](LICENSE). Keep the copyright and license notice when redistributing. Bundled dependencies retain their own licenses; see [third-party notices](THIRD_PARTY_NOTICES.md). JLayer remains LGPL-2.1-or-later.
 
-Готовый мод: `build/libs/chest-chimes-1.1.1-all.jar`.
+## Building
 
-CI проверяет unit-тесты аудио, приоритетов и локального хранилища; GameTest проверяет работу на выделенном сервере, передачу общего звука другому игроку, редактирование громкости, запрет приватных загрузок и перенос старых настроек только владельцу. Затем проверяются содержимое JAR, mixin/refmap и встроенный MP3-декодер.
+Use JDK 17 and the included Gradle wrapper. Run ./gradlew build (gradlew.bat on Windows). The distributable is build/libs/chest-chimes-1.1.2-all.jar.
 
-JAR, SHA-256, XML-отчёты и серверный журнал сохраняются в ветке `builds`; это работает и при заполненной квоте GitHub Artifacts. Графический интерфейс, системный файловый диалог и реальное звучание требуют [ручной проверки](docs/TESTING.md).
-
-Сервер принимает изменения только для действительно открытого и доступного сундука: проверяются ID меню, расстояние, порядок пакетов, размеры PCM и громкость 0–100%. Допускается одна загрузка на игрока и не чаще одного начала загрузки за 2 секунды. Незавершённые загрузки удаляются при закрытии меню/выходе/тайм-ауте.
+Run ./gradlew test for audio/storage unit tests and ./gradlew runGameTestServer for server integration tests. See [manual test scenarios](docs/TESTING.md) for GUI and playback checks.

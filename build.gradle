@@ -4,7 +4,7 @@ plugins {
     id 'org.spongepowered.mixin' version '0.7.+'
 }
 group = 'dev.chestchimes'
-version = '1.1.1'
+version = '1.1.2'
 base { archivesName = 'chest-chimes' }
 java.toolchain.languageVersion = JavaLanguageVersion.of(17)
 minecraft {
@@ -45,3 +45,9 @@ tasks.named('jarJar') {
     finalizedBy 'reobfJarJar'
 }
 tasks.named('build') { dependsOn 'jarJar' }
+
+// Include project and third-party notices in both distributable JARs.
+tasks.withType(Jar).configureEach {
+    from(rootProject.file("LICENSE"))
+    from(rootProject.file("THIRD_PARTY_NOTICES.md"))
+}

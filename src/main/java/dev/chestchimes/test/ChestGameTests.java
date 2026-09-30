@@ -126,19 +126,22 @@ public final class ChestGameTests {
         final java.util.List<dev.chestchimes.network.Wire.Message> received = new java.util.ArrayList<>();
         ObservedPlayer(net.minecraft.server.level.ServerLevel level, String name) {
             super(level, new com.mojang.authlib.GameProfile(java.util.UUID.randomUUID(), name));
-            connection = new net.minecraft.server.network.ServerGamePacketListenerImpl(level.getServer(),
-                    new net.minecraft.network.Connection(net.minecraft.network.protocol.PacketFlow.SERVERBOUND), this) {
-                @Override public void send(net.minecraft.network.protocol.Packet<?> packet) {
-                    if (packet instanceof net.minecraft.network.protocol.game.ClientboundCustomPayloadPacket payload
-                            && payload.getIdentifier().equals(new net.minecraft.resources.ResourceLocation("chestchimes", "audio"))) {
-                        var bytes = payload.getData();
-                        try {
-                            bytes.readVarInt();
-                            received.add(dev.chestchimes.network.Wire.Message.decode(bytes));
-                        } finally { bytes.release(); }
-                    }
-                }
+            var transport = new net.minecraft.network.Connection(net.minecraft.network.protocol.PacketFlow.SERVERBOUND) {
+                @Override public void send(net.minecraft.network.protocol.Packet<?> packet) { collect(packet); }
+                @Override public void send(net.minecraft.network.protocol.Packet<?> packet,
+                                           net.minecraft.network.PacketSendListener listener) { collect(packet); }
             };
+            connection = new net.minecraft.server.network.ServerGamePacketListenerImpl(level.getServer(), transport, this);
+        }
+        private void collect(net.minecraft.network.protocol.Packet<?> packet) {
+            if (packet instanceof net.minecraft.network.protocol.game.ClientboundCustomPayloadPacket payload
+                    && payload.getIdentifier().equals(new net.minecraft.resources.ResourceLocation("chestchimes", "audio"))) {
+                var bytes = payload.getData();
+                try {
+                    bytes.readVarInt();
+                    received.add(dev.chestchimes.network.Wire.Message.decode(bytes));
+                } finally { bytes.release(); }
+            }
         }
         void open(ChestBlockEntity chest) {
             BlockPos pos = chest.getBlockPos();

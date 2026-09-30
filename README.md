@@ -1,13 +1,12 @@
-# Chest Chimes — готовая сборка
+# Chest Chimes — verified builds
 
-[Скачать JAR](chest-chimes-1.1.2-all.jar?raw=true)
+- [chest-chimes-1.1.2-all.jar](chest-chimes-1.1.2-all.jar?raw=true)
+- [chest-chimes-fabric-1.20.1-1.2.0.jar](chest-chimes-fabric-1.20.1-1.2.0.jar?raw=true)
+- [chest-chimes-fabric-1.21.1-1.2.0.jar](chest-chimes-fabric-1.21.1-1.2.0.jar?raw=true)
+- [chest-chimes-neoforge-1.21.1-1.2.0.jar](chest-chimes-neoforge-1.21.1-1.2.0.jar?raw=true)
 
-Minecraft 1.20.1 · Forge 47.4.0+ (47.x) · Java 17.
+Fabric requires Fabric API. Use matching Minecraft, loader and mod builds on both client and server.
 
-Поместите JAR в папку mods клиента и сервера. Отдельные библиотеки не нужны.
+Source: 224a5073ae9287bef24ed6b6aba9bb174f6d2718
 
-Исходный коммит: 958b7dba1468f49d4af6189d1ea41d61687d6146
-
-[Успешные автоматические проверки](https://github.com/Magersers/Chest_Chimes_mod/actions/runs/36701023358)
-
-Графический интерфейс, системный диалог и реальное воспроизведение требуют ручной проверки.
+[Build and tests](https://github.com/Magersers/Chest_Chimes_mod/actions/runs/36703639554)

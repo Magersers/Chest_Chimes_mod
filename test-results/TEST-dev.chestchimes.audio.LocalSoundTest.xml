@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="dev.chestchimes.audio.LocalSoundTest" tests="9" skipped="0" failures="0" errors="0" timestamp="2026-09-30T10:13:59" hostname="runnervmtr4k5" time="0.058">
+<testsuite name="dev.chestchimes.audio.LocalSoundTest" tests="9" skipped="0" failures="0" errors="0" timestamp="2026-09-30T10:47:09" hostname="runnervmtr4k5" time="0.06">
   <properties/>
   <testcase name="keysCannotEscapeLocalDirectory()" classname="dev.chestchimes.audio.LocalSoundTest" time="0.018"/>
   <testcase name="validatesVolumeBoundaries()" classname="dev.chestchimes.audio.LocalSoundTest" time="0.003"/>
-  <testcase name="replaceIsDurableAndLeavesNoTemporaryFiles()" classname="dev.chestchimes.audio.LocalSoundTest" time="0.006"/>
-  <testcase name="corruptLocalRecordingIsRejectedWithoutDeletingIt()" classname="dev.chestchimes.audio.LocalSoundTest" time="0.003"/>
-  <testcase name="accountsWorldsDimensionsAndChestsStaySeparate()" classname="dev.chestchimes.audio.LocalSoundTest" time="0.007"/>
-  <testcase name="personalSoundSurvivesRestartWithItsVolume()" classname="dev.chestchimes.audio.LocalSoundTest" time="0.003"/>
+  <testcase name="replaceIsDurableAndLeavesNoTemporaryFiles()" classname="dev.chestchimes.audio.LocalSoundTest" time="0.005"/>
+  <testcase name="corruptLocalRecordingIsRejectedWithoutDeletingIt()" classname="dev.chestchimes.audio.LocalSoundTest" time="0.005"/>
+  <testcase name="accountsWorldsDimensionsAndChestsStaySeparate()" classname="dev.chestchimes.audio.LocalSoundTest" time="0.006"/>
+  <testcase name="personalSoundSurvivesRestartWithItsVolume()" classname="dev.chestchimes.audio.LocalSoundTest" time="0.004"/>
   <testcase name="chimeOwnsItsAudioBytes()" classname="dev.chestchimes.audio.LocalSoundTest" time="0.002"/>
-  <testcase name="personalOverridesSharedIncludingMute()" classname="dev.chestchimes.audio.LocalSoundTest" time="0.002"/>
+  <testcase name="personalOverridesSharedIncludingMute()" classname="dev.chestchimes.audio.LocalSoundTest" time="0.003"/>
   <testcase name="deletingLocalRevealsSharedThenVanilla()" classname="dev.chestchimes.audio.LocalSoundTest" time="0.002"/>
   <system-out><![CDATA[]]></system-out>
   <system-err><![CDATA[]]></system-err>

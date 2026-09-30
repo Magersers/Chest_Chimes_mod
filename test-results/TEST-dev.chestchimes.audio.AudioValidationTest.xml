@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="dev.chestchimes.audio.AudioValidationTest" tests="9" skipped="0" failures="0" errors="0" timestamp="2026-09-30T10:13:58" hostname="runnervmtr4k5" time="0.142">
+<testsuite name="dev.chestchimes.audio.AudioValidationTest" tests="9" skipped="0" failures="0" errors="0" timestamp="2026-09-30T10:47:09" hostname="runnervmtr4k5" time="0.178">
   <properties/>
-  <testcase name="rejectsOutOfOrderDuplicateIncompleteAndOverrunTransfers()" classname="dev.chestchimes.audio.AudioValidationTest" time="0.053"/>
-  <testcase name="rejectsMisleadingAndTruncatedWav()" classname="dev.chestchimes.audio.AudioValidationTest" time="0.005"/>
-  <testcase name="rejectsCompressedWavAndUnsupportedChannels()" classname="dev.chestchimes.audio.AudioValidationTest" time="0.005"/>
-  <testcase name="enforcesDecimalTenMegabyteLimit()" classname="dev.chestchimes.audio.AudioValidationTest" time="0.002"/>
-  <testcase name="convertsUnsignedEightBitSilence()" classname="dev.chestchimes.audio.AudioValidationTest" time="0.018"/>
-  <testcase name="orderedTransferRoundTrip()" classname="dev.chestchimes.audio.AudioValidationTest" time="0.009"/>
+  <testcase name="rejectsOutOfOrderDuplicateIncompleteAndOverrunTransfers()" classname="dev.chestchimes.audio.AudioValidationTest" time="0.107"/>
+  <testcase name="rejectsMisleadingAndTruncatedWav()" classname="dev.chestchimes.audio.AudioValidationTest" time="0.002"/>
+  <testcase name="rejectsCompressedWavAndUnsupportedChannels()" classname="dev.chestchimes.audio.AudioValidationTest" time="0.002"/>
+  <testcase name="enforcesDecimalTenMegabyteLimit()" classname="dev.chestchimes.audio.AudioValidationTest" time="0.001"/>
+  <testcase name="convertsUnsignedEightBitSilence()" classname="dev.chestchimes.audio.AudioValidationTest" time="0.021"/>
+  <testcase name="orderedTransferRoundTrip()" classname="dev.chestchimes.audio.AudioValidationTest" time="0.008"/>
   <testcase name="trimsWithoutPaddingShortClips()" classname="dev.chestchimes.audio.AudioValidationTest" time="0.002"/>
-  <testcase name="rejectsOddAndOversizedPcm()" classname="dev.chestchimes.audio.AudioValidationTest" time="0.002"/>
-  <testcase name="truncatesLongWavToFiveSeconds()" classname="dev.chestchimes.audio.AudioValidationTest" time="0.026"/>
+  <testcase name="rejectsOddAndOversizedPcm()" classname="dev.chestchimes.audio.AudioValidationTest" time="0.001"/>
+  <testcase name="truncatesLongWavToFiveSeconds()" classname="dev.chestchimes.audio.AudioValidationTest" time="0.021"/>
   <system-out><![CDATA[]]></system-out>
   <system-err><![CDATA[]]></system-err>
 </testsuite>
